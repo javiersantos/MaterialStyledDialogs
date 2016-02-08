@@ -8,13 +8,13 @@
     <LinearLayout
         android:id="@+id/md_styled_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dialog_header"
+        android:layout_height="@dimen/md_styled_dialog_header"
         android:gravity="center"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/md_styled_dialog_pic"
-            android:layout_width="@dimen/pic_size"
-            android:layout_height="@dimen/pic_size" />
+            android:layout_width="@dimen/md_styled_pic_size"
+            android:layout_height="@dimen/md_styled_pic_size" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/text_title"
+            android:textSize="@dimen/md_styled_text_title"
             android:textStyle="bold"
             android:alpha="0.6" />
         <TextView
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            android:textSize="@dimen/text_description" />
+            android:textSize="@dimen/md_styled_text_description" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"

@@ -8,8 +8,8 @@ import android.widget.ImageView;
 class UtilsAnimation {
 
     static void zoomInAndOutAnimation(Context context, final ImageView image) {
-        Animation zoomInAnimation = AnimationUtils.loadAnimation(context, R.anim.zoom_in);
-        final Animation zoomOutAnimation = AnimationUtils.loadAnimation(context, R.anim.zoom_out);
+        Animation zoomInAnimation = AnimationUtils.loadAnimation(context, R.anim.md_styled_zoom_in);
+        final Animation zoomOutAnimation = AnimationUtils.loadAnimation(context, R.anim.md_styled_zoom_out);
 
         zoomInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
