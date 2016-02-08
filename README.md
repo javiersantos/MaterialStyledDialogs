@@ -51,13 +51,13 @@ dialog.show();
 
 ## Customization
 ```Java
+// Set an icon for the dialog header.
+.setIcon(R.mipmap.ic_launcher)
+```
+```Java
 // Set if the header icon will be displayed with an initial animation.
 // Default: true.
 .withAnimation(false)
-```
-```Java
-// Set an icon for the dialog header.
-.setIcon(R.mipmap.ic_launcher)
 ```
 ```Java
 // Set a color for the dialog header.
