@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/md_styled_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_header"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/md_styled_dialog_pic"
+            android:layout_width="@dimen/pic_size"
+            android:layout_height="@dimen/pic_size" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/md_styled_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            android:alpha="0.6" />
+        <TextView
+            android:id="@+id/md_styled_dialog_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:textSize="@dimen/text_description" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@android:color/darker_gray"
+        android:alpha="0.3" />
+</LinearLayout>

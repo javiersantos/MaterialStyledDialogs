@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MaterialStyledDialogs Library (Sample)</string>
+    <string name="app_description">A library that shows a beautiful and customizable Material dialog with header and animation.</string>
+    <string name="action_about">About</string>
+
+    <string name="btn_style_header_1">Header Style\nGreen color, icon, title and description</string>
+    <string name="btn_style_header_2">Header Style\nGrey color, icon and description</string>
+    <string name="btn_style_header_3">Header Style\nImage, icon, title and description</string>
+    <string name="btn_style_header_4">Header Style\nImage, title and description</string>
+</resources>
