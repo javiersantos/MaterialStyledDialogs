@@ -98,7 +98,7 @@ dialog.show();
 <table>
     <tr>
         <td>
-            <a href="https://play.google.com/store/apps/details?id=com.materiup.following">
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.materiup.following">
                 <img src="http://www.materiup.com/images/logo.png"
                     title="Following: game for Twitter"
                     alt="Following: game for Twitter" height="120">
