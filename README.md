@@ -3,7 +3,7 @@
 
 <p align="center">
   <a target="_blank" href="https://android-arsenal.com/api?level=11"><img src="https://img.shields.io/badge/API-11%2B-orange.svg"></a>
-  <a target="_blank" href="https://travis-ci.org/javiersantos/MaterialStyledDialogs"><img src="https://travis-ci.org/javiersantos/MaterialStyledDialogs?branch=master"></a>
+  <a target="_blank" href="https://travis-ci.org/javiersantos/MaterialStyledDialogs"><img src="https://travis-ci.org/javiersantos/MaterialStyledDialogs.svg?branch=master"></a>
   <a target="_blank" href="https://www.paypal.me/javiersantos" title="Donate using PayPal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" /></a>
   <a target="_blank" href="http://patreon.com/javiersantos" title="Donate using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" /></a>
 </p>
