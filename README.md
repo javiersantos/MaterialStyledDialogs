@@ -10,6 +10,8 @@
 
 <p align="center">Android Library that shows a beautiful and customable Material dialog with header and animation. Based on <a target="_blank" href="https://github.com/afollestad/material-dialogs">material-dialogs</a> and inspired by this <a target="_blank" href="https://dribbble.com/shots/2439453-Sprocket-AND-1-3-3-OS-Consistent-Dialogs">dribbble</a>.</p>
 
+![MaterialStyledDialogs](https://raw.githubusercontent.com/javiersantos/MaterialStyledDialogs/master/Screenshots/banner.png)
+
 ## Sample Project
 You can download the latest sample APK from Google Play:
 
@@ -90,8 +92,6 @@ dialog.show();
 //.setNegative(...)
 //.setNeutral(...)
 ```
-
-![MaterialStyledDialogs](https://raw.githubusercontent.com/javiersantos/MaterialStyledDialogs/master/Screenshots/banner.png)
 
 ## License
 	Copyright 2016 Javier Santos
