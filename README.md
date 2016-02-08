@@ -10,6 +10,11 @@
 
 <p align="center">Android Library that shows a beautiful and customable Material dialog with header and animation. Based on <a target="_blank" href="https://github.com/afollestad/material-dialogs">material-dialogs</a> and inspired by this <a target="_blank" href="https://dribbble.com/shots/2439453-Sprocket-AND-1-3-3-OS-Consistent-Dialogs">dribbble</a>.</p>
 
+## Sample Project
+You can download the latest sample APK from Google Play:
+
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.github.javiersantos.materialstyleddialogs.demo"><img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="60"></a>
+
 ## How to include
 Add the repository to your project **build.gradle**:
 ```Javascript
