@@ -126,3 +126,8 @@ dialog.show();
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
+
+	MaterialStyledDialogs includes code from material-dialogs, which is 
+	licensed under the MIT license. You may obtain a copy at
+	
+	   https://github.com/afollestad/material-dialogs/blob/master/LICENSE.txt
