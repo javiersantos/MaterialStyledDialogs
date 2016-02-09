@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // Build some dialogs for the sample app
         final MaterialStyledDialog dialogHeader_1 = new MaterialStyledDialog(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_google_play).color(Color.WHITE))
-                .withAnimation(true)
+                .withDialogAnimation(true)
                 .setTitle("Awesome!")
                 .setDescription("Glad to see you like MaterialStyledDialogs! If you're up for it, we would really appreciate you reviewing us.")
                 .setHeaderColor(R.color.dialog_1)
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         final MaterialStyledDialog dialogHeader_2 = new MaterialStyledDialog(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_comment_alt).color(Color.WHITE))
-                .withAnimation(false)
+                .withIconAnimation(false)
                 .setDescription("What can we improve? Your feedback is always welcome.")
                 .setHeaderColor(R.color.dialog_2)
                 .setPositive("Feedback", new MaterialDialog.SingleButtonCallback() {
@@ -73,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         final MaterialStyledDialog dialogHeader_3 = new MaterialStyledDialog(context)
-                .setHeaderDrawable(ContextCompat.getDrawable(context, R.drawable.header))
-                .withAnimation(true)
+                .setHeaderDrawable(R.drawable.header)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_github).color(Color.WHITE))
+                .withDialogAnimation(true)
                 .setTitle("An awesome library?")
                 .setDescription("Do you like this library? Check out my other Open Source libraries and apps!")
                 .setPositive("GitHub", new MaterialDialog.SingleButtonCallback() {
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         final MaterialStyledDialog dialogHeader_4 = new MaterialStyledDialog(context)
-                .setHeaderDrawable(ContextCompat.getDrawable(context, R.drawable.header_2))
+                .setHeaderDrawable(R.drawable.header_2)
                 .setTitle("Sweet!")
                 .setDescription("Check out my others apps with Material Design available on Google Play. Hope you find them interesting!")
                 .setPositive("Google Play", new MaterialDialog.SingleButtonCallback() {

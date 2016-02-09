@@ -3,8 +3,8 @@
     <string name="app_description">A library that shows a beautiful and customizable Material dialog with header and animation.</string>
     <string name="action_about">About</string>
 
-    <string name="btn_style_header_1">Header Style\nGreen color, icon, title and description</string>
-    <string name="btn_style_header_2">Header Style\nGrey color, icon and description</string>
-    <string name="btn_style_header_3">Header Style\nImage, icon, title and description</string>
-    <string name="btn_style_header_4">Header Style\nImage, title and description</string>
+    <string name="btn_style_header_1">Header with green color, icon, title, description and animations</string>
+    <string name="btn_style_header_2">Header with grey color, icon and description</string>
+    <string name="btn_style_header_3">Header with image, icon, title, description and animations</string>
+    <string name="btn_style_header_4">Header with image, title and description</string>
 </resources>
