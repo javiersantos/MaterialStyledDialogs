@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MaterialStyledDialog" />
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/md_styled_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/md_styled_slide_down</item>
+    </style>
+</resources>

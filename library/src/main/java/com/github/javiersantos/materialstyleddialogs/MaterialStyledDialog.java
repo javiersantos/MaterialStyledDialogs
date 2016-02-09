@@ -3,8 +3,11 @@ package com.github.javiersantos.materialstyleddialogs;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,9 +19,10 @@ import com.github.javiersantos.materialstyleddialogs.enums.Style;
 
 public class MaterialStyledDialog {
     private Context context;
+    private MaterialDialog materialDialog;
     private MaterialDialog.Builder builder;
     private Style style;
-    private Boolean withAnimation, cancelable;
+    private Boolean iconAnimation, dialogAnimation, cancelable;
     private Drawable headerDrawable, iconDrawable;
     private Integer primaryColor;
     private String title, description;
@@ -28,7 +32,8 @@ public class MaterialStyledDialog {
     public MaterialStyledDialog(Context context) {
         this.context = context;
         this.builder = new MaterialDialog.Builder(context);
-        this.withAnimation = true;
+        this.iconAnimation = true;
+        this.dialogAnimation = false;
         this.cancelable = true;
         this.primaryColor = UtilsLibrary.getPrimaryColor(context);
         this.style = Style.STYLE_HEADER;
@@ -51,9 +56,32 @@ public class MaterialStyledDialog {
      *
      * @param withAnimation true to enable animation, false otherwise
      * @return this
+     * @deprecated use {@link #withIconAnimation(Boolean)} instead
      */
     public MaterialStyledDialog withAnimation(Boolean withAnimation) {
-        this.withAnimation = withAnimation;
+        this.iconAnimation = withAnimation;
+        return this;
+    }
+
+    /**
+     * Set if the header icon will be displayed with an initial animation. Default: true.
+     *
+     * @param withAnimation true to enable animation, false otherwise
+     * @return this
+     */
+    public MaterialStyledDialog withIconAnimation(Boolean withAnimation) {
+        this.iconAnimation = withAnimation;
+        return this;
+    }
+
+    /**
+     * Set if the dialog will be displayed with an enter and exit animation. Default: false.
+     *
+     * @param withAnimation true to enable animation, false otherwise
+     * @return this
+     */
+    public MaterialStyledDialog withDialogAnimation(Boolean withAnimation) {
+        this.dialogAnimation = withAnimation;
         return this;
     }
 
@@ -64,6 +92,16 @@ public class MaterialStyledDialog {
      */
     public MaterialStyledDialog setIcon(@NonNull Drawable icon) {
         this.iconDrawable = icon;
+        return this;
+    }
+
+    /**
+     * Set an icon for the dialog header
+     * @param iconRes to show
+     * @return this
+     */
+    public MaterialStyledDialog setIcon(@DrawableRes Integer iconRes) {
+        this.iconDrawable = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
         return this;
     }
 
@@ -95,8 +133,8 @@ public class MaterialStyledDialog {
      * @param color for the header
      * @return this
      */
-    public MaterialStyledDialog setHeaderColor(@NonNull Integer color) {
-        this.primaryColor = color;
+    public MaterialStyledDialog setHeaderColor(@ColorRes Integer color) {
+        this.primaryColor = UtilsLibrary.getColor(context, color);
         return this;
     }
 
@@ -105,11 +143,22 @@ public class MaterialStyledDialog {
      *
      * @param drawable image for the header
      * @return this
-     *
      */
     @TargetApi(16)
     public MaterialStyledDialog setHeaderDrawable(@NonNull Drawable drawable) {
         this.headerDrawable = drawable;
+        return this;
+    }
+
+    /**
+     * Set an image for the dialog header
+     *
+     * @param drawableRes image for the header
+     * @return this
+     */
+    @TargetApi(16)
+    public MaterialStyledDialog setHeaderDrawable(@DrawableRes Integer drawableRes) {
+        this.headerDrawable = ResourcesCompat.getDrawable(context.getResources(), drawableRes, null);
         return this;
     }
 
@@ -165,20 +214,36 @@ public class MaterialStyledDialog {
 
     @UiThread
     public MaterialStyledDialog build() {
+        // Set cancelable
         builder.cancelable(cancelable);
-        builder.customView(initStyle(style, withAnimation), false);
 
+        // Set style
+        builder.customView(initStyle(), false);
+
+        // Set positive button
         if (positive != null && positive.length() != 0) {
             builder.positiveText(positive);
             builder.onPositive(positiveCallback);
         }
+
+        // set negative button
         if (negative != null && negative.length() != 0) {
             builder.negativeText(negative);
             builder.onNegative(negativeCallback);
         }
+
+        // Set neutral button
         if (neutral != null && neutral.length() != 0) {
             builder.neutralText(neutral);
             builder.onNeutral(neutralCallback);
+        }
+
+        // Build the dialog with the previous configuration
+        materialDialog = builder.build();
+
+        // Set dialog animation
+        if (dialogAnimation) {
+            materialDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         }
 
         return this;
@@ -186,13 +251,13 @@ public class MaterialStyledDialog {
 
     @UiThread
     public MaterialStyledDialog show() {
-        MaterialStyledDialog dialog = build();
-        builder.show();
-        return dialog;
+        build();
+        materialDialog.show();
+        return this;
     }
 
     @TargetApi(16)
-    private View initStyle(Style style, Boolean withAnimation) {
+    private View initStyle() {
         LayoutInflater inflater = LayoutInflater.from(context);
         View contentView;
 
@@ -202,30 +267,36 @@ public class MaterialStyledDialog {
                 break;
         }
 
+        // Init Views
         LinearLayout dialogHeader = (LinearLayout) contentView.findViewById(R.id.md_styled_header);
         ImageView dialogPic = (ImageView) contentView.findViewById(R.id.md_styled_dialog_pic);
         TextView dialogTitle = (TextView) contentView.findViewById(R.id.md_styled_dialog_title);
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
 
+        // Set header color or drawable
         if (headerDrawable != null && UtilsLibrary.checkApiGreaterThan(16)) {
             dialogHeader.setBackground(headerDrawable); // TODO API<16
         } else {
-            dialogHeader.setBackgroundColor(context.getResources().getInteger(primaryColor));
+            dialogHeader.setBackgroundColor(primaryColor);
         }
 
+        // Set header icon
         if (iconDrawable != null) {
             dialogPic.setImageDrawable(iconDrawable);
         }
 
+        // Set dialog title
         if (title != null && title.length() != 0) {
             dialogTitle.setText(title);
         } else {
             dialogTitle.setVisibility(View.GONE);
         }
 
+        // Set dialog description
         dialogDescription.setText(description);
 
-        if (withAnimation) {
+        // Set icon animation
+        if (iconAnimation) {
             UtilsAnimation.zoomInAndOutAnimation(context, dialogPic);
         }
 
