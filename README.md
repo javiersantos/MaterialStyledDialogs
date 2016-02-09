@@ -30,7 +30,7 @@ repositories {
 And add the library to your module **build.gradle**:
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:MaterialStyledDialogs:1.0.1'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:1.1'
 }
 ```
 
@@ -59,12 +59,17 @@ dialog.show();
 ## Customization
 ```Java
 // Set an icon for the dialog header.
-.setIcon(R.mipmap.ic_launcher)
+.setIcon(R.drawable.ic_launcher)
 ```
 ```Java
 // Set if the header icon will be displayed with an initial animation.
 // Default: true.
-.withAnimation(false)
+.withIconAnimation(false)
+```
+```Java
+// Set if the dialog will be displayed with an enter and exit animation.
+// Default: false.
+.withDialogAnimation(true)
 ```
 ```Java
 // Set a color for the dialog header.
@@ -74,7 +79,7 @@ dialog.show();
 ```Java
 // Set an image for the dialog header.
 // API 16+ required.
-.setHeaderDrawable(ContextCompat.getDrawable(this, R.drawable.header))
+.setHeaderDrawable(R.drawable.header)
 ```
 ```Java
 // Set if the dialog will be hidden when touching outside.
@@ -83,7 +88,7 @@ dialog.show();
 ```
 ```Java
 // Set a positive, negative and/or neutral button for the dialog.
-.setPositive(R.string.button, new MaterialDialog.SingleButtonCallback() {
+.setPositive(getResources().getString(R.string.button), new MaterialDialog.SingleButtonCallback() {
         @Override
         public void onClick(MaterialDialog dialog, DialogAction which) {
                 Log.d("MaterialStyledDialogs", "Do something!");
