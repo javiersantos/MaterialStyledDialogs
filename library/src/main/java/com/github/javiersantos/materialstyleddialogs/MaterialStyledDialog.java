@@ -210,7 +210,7 @@ public class MaterialStyledDialog {
         if (headerDrawable != null && UtilsLibrary.checkApiGreaterThan(16)) {
             dialogHeader.setBackground(headerDrawable); // TODO API<16
         } else {
-            dialogHeader.setBackgroundColor(primaryColor);
+            dialogHeader.setBackgroundColor(context.getResources().getInteger(primaryColor));
         }
 
         if (iconDrawable != null) {
