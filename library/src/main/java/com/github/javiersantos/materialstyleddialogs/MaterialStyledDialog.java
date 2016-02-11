@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.javiersantos.materialstyleddialogs.enums.Duration;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
 
 public class MaterialStyledDialog {
@@ -22,7 +23,8 @@ public class MaterialStyledDialog {
     private MaterialDialog materialDialog;
     private MaterialDialog.Builder builder;
     private Style style;
-    private Boolean iconAnimation, dialogAnimation, cancelable;
+    private Duration duration;
+    private Boolean isIconAnimation, isDialogAnimation, isCancelable;
     private Drawable headerDrawable, iconDrawable;
     private Integer primaryColor;
     private String title, description;
@@ -32,15 +34,16 @@ public class MaterialStyledDialog {
     public MaterialStyledDialog(Context context) {
         this.context = context;
         this.builder = new MaterialDialog.Builder(context);
-        this.iconAnimation = true;
-        this.dialogAnimation = false;
-        this.cancelable = true;
+        this.isIconAnimation = true;
+        this.isDialogAnimation = false;
+        this.duration = Duration.NORMAL;
+        this.isCancelable = true;
         this.primaryColor = UtilsLibrary.getPrimaryColor(context);
         this.style = Style.STYLE_HEADER;
     }
 
     /**
-     * Set an style for the dialog. Default: STYLE_HEADER.
+     * Set an style for the dialog. Default: Style.STYLE_HEADER.
      *
      * @param style to apply
      * @return this
@@ -59,7 +62,7 @@ public class MaterialStyledDialog {
      * @deprecated use {@link #withIconAnimation(Boolean)} instead
      */
     public MaterialStyledDialog withAnimation(Boolean withAnimation) {
-        this.iconAnimation = withAnimation;
+        this.isIconAnimation = withAnimation;
         return this;
     }
 
@@ -70,18 +73,31 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog withIconAnimation(Boolean withAnimation) {
-        this.iconAnimation = withAnimation;
+        this.isIconAnimation = withAnimation;
         return this;
     }
 
     /**
-     * Set if the dialog will be displayed with an enter and exit animation. Default: false.
+     * Set if the dialog will be displayed with an open and close animation. Default: false.
      *
      * @param withAnimation true to enable animation, false otherwise
      * @return this
      */
     public MaterialStyledDialog withDialogAnimation(Boolean withAnimation) {
-        this.dialogAnimation = withAnimation;
+        this.isDialogAnimation = withAnimation;
+        return this;
+    }
+
+    /**
+     * Set if the dialog will be displayed with an open and close animation, with duration. Default: false, Duration.NORMAL.
+     *
+     * @param withAnimation true to enable animation, false otherwise
+     * @return this
+     * @see com.github.javiersantos.materialstyleddialogs.enums.Duration
+     */
+    public MaterialStyledDialog withDialogAnimation(Boolean withAnimation, Duration duration) {
+        this.isDialogAnimation = withAnimation;
+        this.duration = duration;
         return this;
     }
 
@@ -208,14 +224,14 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setCancelable(Boolean cancelable) {
-        this.cancelable = cancelable;
+        this.isCancelable = cancelable;
         return this;
     }
 
     @UiThread
     public MaterialStyledDialog build() {
-        // Set cancelable
-        builder.cancelable(cancelable);
+        // Set isCancelable
+        builder.cancelable(isCancelable);
 
         // Set style
         builder.customView(initStyle(), false);
@@ -241,9 +257,15 @@ public class MaterialStyledDialog {
         // Build the dialog with the previous configuration
         materialDialog = builder.build();
 
-        // Set dialog animation
-        if (dialogAnimation) {
-            materialDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        // Set dialog animation and animation duration
+        if (isDialogAnimation) {
+            if (duration == Duration.NORMAL) {
+                materialDialog.getWindow().getAttributes().windowAnimations = R.style.MaterialStyledDialogs_DialogAnimationNormal;
+            } else if (duration == Duration.FAST) {
+                materialDialog.getWindow().getAttributes().windowAnimations = R.style.MaterialStyledDialogs_DialogAnimationFast;
+            } else if (duration == Duration.SLOW) {
+                materialDialog.getWindow().getAttributes().windowAnimations = R.style.MaterialStyledDialogs_DialogAnimationSlow;
+            }
         }
 
         return this;
@@ -251,7 +273,7 @@ public class MaterialStyledDialog {
 
     @UiThread
     public MaterialStyledDialog show() {
-        build();
+        if (materialDialog == null) { build(); }
         materialDialog.show();
         return this;
     }
@@ -296,7 +318,7 @@ public class MaterialStyledDialog {
         dialogDescription.setText(description);
 
         // Set icon animation
-        if (iconAnimation) {
+        if (isIconAnimation) {
             UtilsAnimation.zoomInAndOutAnimation(context, dialogPic);
         }
 
