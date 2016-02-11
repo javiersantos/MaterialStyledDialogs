@@ -89,7 +89,7 @@ public class MaterialStyledDialog {
     }
 
     /**
-     * Set if the dialog will be displayed with an open and close animation, with duration. Default: false, Duration.NORMAL.
+     * Set if the dialog will be displayed with an open and close animation, with custom duration. Default: false, Duration.NORMAL.
      *
      * @param withAnimation true to enable animation, false otherwise
      * @return this
@@ -230,7 +230,7 @@ public class MaterialStyledDialog {
 
     @UiThread
     public MaterialStyledDialog build() {
-        // Set isCancelable
+        // Set cancelable
         builder.cancelable(isCancelable);
 
         // Set style
