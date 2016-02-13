@@ -277,6 +277,11 @@ public class MaterialStyledDialog {
         materialDialog.show();
         return this;
     }
+    
+    @UiThread
+    public void dismiss() {
+        if (materialDialog != null) { materialDialog.dismiss(); }
+    }
 
     @TargetApi(16)
     private View initStyle() {
