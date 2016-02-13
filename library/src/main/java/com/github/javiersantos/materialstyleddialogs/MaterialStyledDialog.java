@@ -20,14 +20,19 @@ import com.github.javiersantos.materialstyleddialogs.enums.Style;
 
 public class MaterialStyledDialog {
     private Context context;
+
+    // build() and show()
     private MaterialDialog materialDialog;
     private MaterialDialog.Builder builder;
-    private Style style;
-    private Duration duration;
-    private Boolean isIconAnimation, isDialogAnimation, isCancelable;
-    private Drawable headerDrawable, iconDrawable;
-    private Integer primaryColor;
-    private String title, description;
+
+    private Style style; // setStyle()
+    private Duration duration; // withDialogAnimation()
+    private Boolean isIconAnimation, isDialogAnimation, isCancelable; // withIconAnimation(), withDialogAnimation() and setCancelable
+    private Drawable headerDrawable, iconDrawable; // setHeaderDrawable() and setIconDrawable()
+    private Integer primaryColor; // setHeaderColor()
+    private String title, description; // setTitle() and setDescription()
+
+    // .setPositive(), setNegative() and setNeutral()
     private String positive, negative, neutral;
     private MaterialDialog.SingleButtonCallback positiveCallback, negativeCallback, neutralCallback;
 
