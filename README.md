@@ -31,7 +31,7 @@ repositories {
 And add the library to your module **build.gradle**:
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:MaterialStyledDialogs:1.1.1'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:1.2'
 }
 ```
 
@@ -64,16 +64,14 @@ dialog.show();
 ```
 ```Java
 // Set if the header icon will be displayed with an initial animation.
-// Default: true.
+// Default: true
 .withIconAnimation(false)
 ```
 ```Java
-// Set if the dialog will be displayed with an open and close animation.
-// Default: false.
-.withDialogAnimation(true)
-```
-```Java
 // Set if the dialog will be displayed with an open and close animation, with custom duration.
+// Default: false
+.withDialogAnimation(true)
+
 // Default: false, Duration.NORMAL
 .withDialogAnimation(true, Duration.SLOW)
 ```
@@ -89,8 +87,16 @@ dialog.show();
 ```
 ```Java
 // Set if the dialog will be hidden when touching outside.
-// Default: true.
+// Default: true
 .setCancelable(false)
+```
+```Java
+// Set if the description will be scrollable, with custom maximum lines.
+// Default: false
+.setScrollable(true)
+
+// Default: false, 5
+.setScrollable(true, 10)
 ```
 ```Java
 // Set a positive, negative and/or neutral button for the dialog.
