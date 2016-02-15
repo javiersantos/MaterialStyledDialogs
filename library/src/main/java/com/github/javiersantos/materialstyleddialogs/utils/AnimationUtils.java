@@ -2,8 +2,9 @@ package com.github.javiersantos.materialstyleddialogs.utils;
 
 import android.content.Context;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.github.javiersantos.materialstyleddialogs.R;
 
 public class AnimationUtils {
 
@@ -13,7 +14,8 @@ public class AnimationUtils {
 
         zoomInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) {}
+            public void onAnimationStart(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -21,7 +23,8 @@ public class AnimationUtils {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationRepeat(Animation animation) {
+            }
         });
 
         image.startAnimation(zoomInAnimation);
