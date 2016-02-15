@@ -18,8 +18,8 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.enums.Duration;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
-import com.github.javiersantos.materialstyleddialogs.utils.UtilsAnimation;
-import com.github.javiersantos.materialstyleddialogs.utils.UtilsLibrary;
+import com.github.javiersantos.materialstyleddialogs.utils.AnimationUtils;
+import com.github.javiersantos.materialstyleddialogs.utils.AndroidUtils;
 
 public class MaterialStyledDialog {
     private Context context;
@@ -47,7 +47,7 @@ public class MaterialStyledDialog {
         this.isDialogAnimation = false;
         this.duration = Duration.NORMAL;
         this.isCancelable = true;
-        this.primaryColor = UtilsLibrary.getPrimaryColor(context);
+        this.primaryColor = AndroidUtils.getPrimaryColor(context);
         this.scrollable = false;
         this.maxLines = 5;
     }
@@ -160,7 +160,7 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setHeaderColor(@ColorRes Integer color) {
-        this.primaryColor = UtilsLibrary.getColor(context, color);
+        this.primaryColor = AndroidUtils.getColor(context, color);
         return this;
     }
 
@@ -334,7 +334,7 @@ public class MaterialStyledDialog {
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
 
         // Set header color or drawable
-        if (headerDrawable != null && UtilsLibrary.checkApiGreaterThan(16)) {
+        if (headerDrawable != null && AndroidUtils.checkApiGreaterThan(16)) {
             dialogHeader.setBackground(headerDrawable); // TODO API<16
         } else {
             dialogHeader.setBackgroundColor(primaryColor);
@@ -366,7 +366,7 @@ public class MaterialStyledDialog {
 
         // Set icon animation
         if (isIconAnimation) {
-            UtilsAnimation.zoomInAndOutAnimation(context, dialogPic);
+            AnimationUtils.zoomInAndOutAnimation(context, dialogPic);
         }
 
         return contentView;

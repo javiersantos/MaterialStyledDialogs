@@ -5,11 +5,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-public class UtilsAnimation {
+public class AnimationUtils {
 
     public static void zoomInAndOutAnimation(Context context, final ImageView image) {
-        Animation zoomInAnimation = AnimationUtils.loadAnimation(context, R.anim.md_styled_zoom_in);
-        final Animation zoomOutAnimation = AnimationUtils.loadAnimation(context, R.anim.md_styled_zoom_out);
+        Animation zoomInAnimation = android.view.animation.AnimationUtils.loadAnimation(context, R.anim.md_styled_zoom_in);
+        final Animation zoomOutAnimation = android.view.animation.AnimationUtils.loadAnimation(context, R.anim.md_styled_zoom_out);
 
         zoomInAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override

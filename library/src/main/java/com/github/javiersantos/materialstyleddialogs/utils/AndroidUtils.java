@@ -5,7 +5,7 @@ import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.util.TypedValue;
 
-public class UtilsLibrary {
+public class AndroidUtils {
 
     public static Integer getPrimaryColor(Context context) {
         TypedValue typedValue = new TypedValue();
