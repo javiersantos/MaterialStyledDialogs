@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.enums.Duration;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
+import com.github.javiersantos.materialstyleddialogs.utils.UtilsAnimation;
+import com.github.javiersantos.materialstyleddialogs.utils.UtilsLibrary;
 
 public class MaterialStyledDialog {
     private Context context;
