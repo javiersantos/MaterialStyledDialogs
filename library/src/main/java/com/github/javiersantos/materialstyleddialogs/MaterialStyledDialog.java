@@ -8,6 +8,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.support.v4.content.res.ResourcesCompat;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,10 +28,10 @@ public class MaterialStyledDialog {
 
     private Style style; // setStyle()
     private Duration duration; // withDialogAnimation()
-    private Boolean isIconAnimation, isDialogAnimation, isCancelable; // withIconAnimation(), withDialogAnimation() and setCancelable
-    private Drawable headerDrawable, iconDrawable; // setHeaderDrawable() and setIconDrawable()
-    private Integer primaryColor; // setHeaderColor()
-    private String title, description; // setTitle() and setDescription()
+    private Boolean isIconAnimation, isDialogAnimation, isCancelable, scrollable; // withIconAnimation(), withDialogAnimation(), setCancelable(), setScrollable()
+    private Drawable headerDrawable, iconDrawable; // setHeaderDrawable(), setIconDrawable()
+    private Integer primaryColor, maxLines; // setHeaderColor(), setScrollable()
+    private String title, description; // setTitle(), setDescription()
 
     // .setPositive(), setNegative() and setNeutral()
     private String positive, negative, neutral;
@@ -39,12 +40,14 @@ public class MaterialStyledDialog {
     public MaterialStyledDialog(Context context) {
         this.context = context;
         this.builder = new MaterialDialog.Builder(context);
+        this.style = Style.STYLE_HEADER;
         this.isIconAnimation = true;
         this.isDialogAnimation = false;
         this.duration = Duration.NORMAL;
         this.isCancelable = true;
         this.primaryColor = UtilsLibrary.getPrimaryColor(context);
-        this.style = Style.STYLE_HEADER;
+        this.scrollable = false;
+        this.maxLines = 5;
     }
 
     /**
@@ -233,6 +236,29 @@ public class MaterialStyledDialog {
         return this;
     }
 
+    /**
+     * Set if the description will be scrollable. Default: false.
+     *
+     * @param scrollable true to enable scrollable description, false otherwise
+     * @return this
+     */
+    public MaterialStyledDialog setScrollable(Boolean scrollable) {
+        this.scrollable = scrollable;
+        return this;
+    }
+
+    /**
+     * Set if the description will be scrollable, with custom maximum lines. Default: false, 5.
+     *
+     * @param scrollable true to enable scrollable description, false otherwise
+     * @return this
+     */
+    public MaterialStyledDialog setScrollable(Boolean scrollable, Integer maxLines) {
+        this.scrollable = scrollable;
+        this.maxLines = maxLines;
+        return this;
+    }
+
     @UiThread
     public MaterialStyledDialog build() {
         // Set cancelable
@@ -326,6 +352,15 @@ public class MaterialStyledDialog {
 
         // Set dialog description
         dialogDescription.setText(description);
+
+        // Set scrollable
+        dialogDescription.setVerticalScrollBarEnabled(scrollable);
+        if (scrollable) {
+            dialogDescription.setMaxLines(maxLines);
+            dialogDescription.setMovementMethod(new ScrollingMovementMethod());
+        } else {
+            dialogDescription.setMaxLines(Integer.MAX_VALUE);
+        }
 
         // Set icon animation
         if (isIconAnimation) {
