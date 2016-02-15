@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.method.ScrollingMovementMethod;
@@ -143,6 +144,17 @@ public class MaterialStyledDialog {
     }
 
     /**
+     * Set a title for the dialog
+     *
+     * @param resource title to show
+     * @return this
+     */
+    public MaterialStyledDialog setTitle(@StringRes int resource){
+        title = context.getString(resource);
+        return this;
+    }
+
+    /**
      * Set a description for the dialog
      *
      * @param description to show
@@ -150,6 +162,17 @@ public class MaterialStyledDialog {
      */
     public MaterialStyledDialog setDescription(@NonNull String description) {
         this.description = description;
+        return this;
+    }
+
+    /**
+     * Set a description for the dialog
+     *
+     * @param resource description to show
+     * @return this
+     */
+    public MaterialStyledDialog setDescription(@StringRes int resource){
+        description = context.getString(resource);
         return this;
     }
 
@@ -310,7 +333,7 @@ public class MaterialStyledDialog {
         materialDialog.show();
         return this;
     }
-    
+
     @UiThread
     public void dismiss() {
         if (materialDialog != null) { materialDialog.dismiss(); }
