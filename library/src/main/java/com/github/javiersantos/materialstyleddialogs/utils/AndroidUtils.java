@@ -5,6 +5,8 @@ import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.util.TypedValue;
 
+import com.github.javiersantos.materialstyleddialogs.R;
+
 public class AndroidUtils {
 
     public static Integer getPrimaryColor(Context context) {
