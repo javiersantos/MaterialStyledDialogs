@@ -22,6 +22,7 @@ You can download the latest sample APK from Google Play:
 Add the repository to your project **build.gradle**:
 ```Javascript
 repositories {
+    jcenter()
     maven {
         url "https://jitpack.io"
     }
