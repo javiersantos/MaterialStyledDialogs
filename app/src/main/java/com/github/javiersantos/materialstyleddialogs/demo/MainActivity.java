@@ -9,10 +9,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //inflate view
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View customView = inflater.inflate(R.layout.custom_view,null);
+        Button dismissButton = (Button)customView.findViewById(R.id.custom_button);
+
         // Build some dialogs for the sample app
         final MaterialStyledDialog dialogHeader_1 = new MaterialStyledDialog(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_google_play).color(Color.WHITE))
@@ -38,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Awesome!")
                 .setDescription("Glad to see you like MaterialStyledDialogs! If you're up for it, we would really appreciate you reviewing us.")
                 .setHeaderColor(R.color.dialog_1)
+                .setCustomView(customView)
                 .setPositive("Google Play", new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(MaterialDialog dialog, DialogAction which) {
@@ -141,6 +149,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialogHeader_4.show();
+            }
+        });
+
+        //custom viewGroup child events
+        dismissButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogHeader_1.dismiss();
             }
         });
 

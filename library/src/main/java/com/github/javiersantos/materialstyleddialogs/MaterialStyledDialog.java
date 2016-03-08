@@ -11,6 +11,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class MaterialStyledDialog {
     private Drawable headerDrawable, iconDrawable; // setHeaderDrawable(), setIconDrawable()
     private Integer primaryColor, maxLines; // setHeaderColor(), setScrollable()
     private String title, description; // setTitle(), setDescription()
+    private View customView;
 
     // .setPositive(), setNegative() and setNeutral()
     private String positive, negative, neutral;
@@ -48,6 +50,18 @@ public class MaterialStyledDialog {
         this.primaryColor = UtilsLibrary.getPrimaryColor(context);
         this.scrollable = false;
         this.maxLines = 5;
+    }
+
+    /**
+     * Set custom view for the dialog.
+     *
+     * @param customView to apply
+     * @return this
+     */
+
+    public MaterialStyledDialog setCustomView(View customView){
+        this.customView = customView;
+        return this;
     }
 
     /**
@@ -330,12 +344,18 @@ public class MaterialStyledDialog {
         ImageView dialogPic = (ImageView) contentView.findViewById(R.id.md_styled_dialog_pic);
         TextView dialogTitle = (TextView) contentView.findViewById(R.id.md_styled_dialog_title);
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
+        FrameLayout dialogCustomViewGroup = (FrameLayout) contentView.findViewById(R.id.md_styled_dialog_custom_view);
 
         // Set header color or drawable
         if (headerDrawable != null && UtilsLibrary.checkApiGreaterThan(16)) {
             dialogHeader.setBackground(headerDrawable); // TODO API<16
         } else {
             dialogHeader.setBackgroundColor(primaryColor);
+        }
+
+        //Set the custom view
+        if (customView != null){
+            dialogCustomViewGroup.addView(customView);
         }
 
         // Set header icon
