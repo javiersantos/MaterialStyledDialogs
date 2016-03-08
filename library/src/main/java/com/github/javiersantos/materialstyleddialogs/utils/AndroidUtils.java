@@ -1,13 +1,15 @@
-package com.github.javiersantos.materialstyleddialogs;
+package com.github.javiersantos.materialstyleddialogs.utils;
 
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.util.TypedValue;
 
-class UtilsLibrary {
+import com.github.javiersantos.materialstyleddialogs.R;
 
-    static Integer getPrimaryColor(Context context) {
+public class AndroidUtils {
+
+    public static Integer getPrimaryColor(Context context) {
         TypedValue typedValue = new TypedValue();
 
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
@@ -26,7 +28,7 @@ class UtilsLibrary {
      *                entry. The value 0 is an invalid identifier.
      * @return A single color value in the form 0xAARRGGBB.
      */
-    static Integer getColor(Context context, @ColorRes int colorId) {
+    public static Integer getColor(Context context, @ColorRes int colorId) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
             // Noinspection deprecation
             return context.getResources().getColor(colorId);
@@ -35,7 +37,7 @@ class UtilsLibrary {
         }
     }
 
-    static Boolean checkApiGreaterThan(Integer api) {
+    public static Boolean checkApiGreaterThan(Integer api) {
         return Build.VERSION.SDK_INT >= api;
     }
 

@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.method.ScrollingMovementMethod;
@@ -18,13 +19,15 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.enums.Duration;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
+import com.github.javiersantos.materialstyleddialogs.utils.AnimationUtils;
+import com.github.javiersantos.materialstyleddialogs.utils.AndroidUtils;
 
 public class MaterialStyledDialog {
-    private Context context;
+    private final Context context;
 
     // build() and show()
     private MaterialDialog materialDialog;
-    private MaterialDialog.Builder builder;
+    private final MaterialDialog.Builder builder;
 
     private Style style; // setStyle()
     private Duration duration; // withDialogAnimation()
@@ -39,15 +42,15 @@ public class MaterialStyledDialog {
 
     public MaterialStyledDialog(Context context) {
         this.context = context;
-        this.builder = new MaterialDialog.Builder(context);
-        this.style = Style.STYLE_HEADER;
-        this.isIconAnimation = true;
-        this.isDialogAnimation = false;
-        this.duration = Duration.NORMAL;
-        this.isCancelable = true;
-        this.primaryColor = UtilsLibrary.getPrimaryColor(context);
-        this.scrollable = false;
-        this.maxLines = 5;
+        builder = new MaterialDialog.Builder(context);
+        style = Style.STYLE_HEADER;
+        isIconAnimation = true;
+        isDialogAnimation = false;
+        duration = Duration.NORMAL;
+        isCancelable = true;
+        primaryColor = AndroidUtils.getPrimaryColor(context);
+        scrollable = false;
+        maxLines = 5;
     }
 
     /**
@@ -55,7 +58,7 @@ public class MaterialStyledDialog {
      *
      * @param style to apply
      * @return this
-     * @see com.github.javiersantos.materialstyleddialogs.enums.Style
+     * @see Style
      */
     public MaterialStyledDialog setStyle(Style style) {
         this.style = style;
@@ -70,7 +73,7 @@ public class MaterialStyledDialog {
      * @deprecated use {@link #withIconAnimation(Boolean)} instead
      */
     public MaterialStyledDialog withAnimation(Boolean withAnimation) {
-        this.isIconAnimation = withAnimation;
+        isIconAnimation = withAnimation;
         return this;
     }
 
@@ -81,7 +84,7 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog withIconAnimation(Boolean withAnimation) {
-        this.isIconAnimation = withAnimation;
+        isIconAnimation = withAnimation;
         return this;
     }
 
@@ -92,7 +95,7 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog withDialogAnimation(Boolean withAnimation) {
-        this.isDialogAnimation = withAnimation;
+        isDialogAnimation = withAnimation;
         return this;
     }
 
@@ -101,10 +104,10 @@ public class MaterialStyledDialog {
      *
      * @param withAnimation true to enable animation, false otherwise
      * @return this
-     * @see com.github.javiersantos.materialstyleddialogs.enums.Duration
+     * @see Duration
      */
     public MaterialStyledDialog withDialogAnimation(Boolean withAnimation, Duration duration) {
-        this.isDialogAnimation = withAnimation;
+        isDialogAnimation = withAnimation;
         this.duration = duration;
         return this;
     }
@@ -115,7 +118,7 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setIcon(@NonNull Drawable icon) {
-        this.iconDrawable = icon;
+        iconDrawable = icon;
         return this;
     }
 
@@ -125,7 +128,7 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setIcon(@DrawableRes Integer iconRes) {
-        this.iconDrawable = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
+        iconDrawable = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
         return this;
     }
 
@@ -141,6 +144,17 @@ public class MaterialStyledDialog {
     }
 
     /**
+     * Set a title for the dialog
+     *
+     * @param resource title to show
+     * @return this
+     */
+    public MaterialStyledDialog setTitle(@StringRes int resource){
+        title = context.getString(resource);
+        return this;
+    }
+
+    /**
      * Set a description for the dialog
      *
      * @param description to show
@@ -152,13 +166,24 @@ public class MaterialStyledDialog {
     }
 
     /**
+     * Set a description for the dialog
+     *
+     * @param resource description to show
+     * @return this
+     */
+    public MaterialStyledDialog setDescription(@StringRes int resource){
+        description = context.getString(resource);
+        return this;
+    }
+
+    /**
      * Set a color for the dialog header. Default: Theme primary color.
      *
      * @param color for the header
      * @return this
      */
     public MaterialStyledDialog setHeaderColor(@ColorRes Integer color) {
-        this.primaryColor = UtilsLibrary.getColor(context, color);
+        primaryColor = AndroidUtils.getColor(context, color);
         return this;
     }
 
@@ -170,7 +195,7 @@ public class MaterialStyledDialog {
      */
     @TargetApi(16)
     public MaterialStyledDialog setHeaderDrawable(@NonNull Drawable drawable) {
-        this.headerDrawable = drawable;
+        headerDrawable = drawable;
         return this;
     }
 
@@ -182,7 +207,7 @@ public class MaterialStyledDialog {
      */
     @TargetApi(16)
     public MaterialStyledDialog setHeaderDrawable(@DrawableRes Integer drawableRes) {
-        this.headerDrawable = ResourcesCompat.getDrawable(context.getResources(), drawableRes, null);
+        headerDrawable = ResourcesCompat.getDrawable(context.getResources(), drawableRes, null);
         return this;
     }
 
@@ -194,8 +219,8 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setPositive(@NonNull String text, @NonNull MaterialDialog.SingleButtonCallback callback) {
-        this.positive = text;
-        this.positiveCallback = callback;
+        positive = text;
+        positiveCallback = callback;
         return this;
     }
 
@@ -207,8 +232,8 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setNegative(@NonNull String text, @NonNull MaterialDialog.SingleButtonCallback callback) {
-        this.negative = text;
-        this.negativeCallback = callback;
+        negative = text;
+        negativeCallback = callback;
         return this;
     }
 
@@ -220,8 +245,8 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setNeutral(@NonNull String text, @NonNull MaterialDialog.SingleButtonCallback callback) {
-        this.neutral = text;
-        this.neutralCallback = callback;
+        neutral = text;
+        neutralCallback = callback;
         return this;
     }
 
@@ -232,7 +257,7 @@ public class MaterialStyledDialog {
      * @return this
      */
     public MaterialStyledDialog setCancelable(Boolean cancelable) {
-        this.isCancelable = cancelable;
+        isCancelable = cancelable;
         return this;
     }
 
@@ -308,7 +333,7 @@ public class MaterialStyledDialog {
         materialDialog.show();
         return this;
     }
-    
+
     @UiThread
     public void dismiss() {
         if (materialDialog != null) { materialDialog.dismiss(); }
@@ -332,7 +357,7 @@ public class MaterialStyledDialog {
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
 
         // Set header color or drawable
-        if (headerDrawable != null && UtilsLibrary.checkApiGreaterThan(16)) {
+        if (headerDrawable != null && AndroidUtils.checkApiGreaterThan(16)) {
             dialogHeader.setBackground(headerDrawable); // TODO API<16
         } else {
             dialogHeader.setBackgroundColor(primaryColor);
@@ -364,7 +389,7 @@ public class MaterialStyledDialog {
 
         // Set icon animation
         if (isIconAnimation) {
-            UtilsAnimation.zoomInAndOutAnimation(context, dialogPic);
+            AnimationUtils.zoomInAndOutAnimation(context, dialogPic);
         }
 
         return contentView;
