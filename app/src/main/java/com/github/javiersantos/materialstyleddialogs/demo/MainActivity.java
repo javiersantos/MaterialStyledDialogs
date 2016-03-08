@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Awesome!")
                 .setDescription("Glad to see you like MaterialStyledDialogs! If you're up for it, we would really appreciate you reviewing us.")
                 .setHeaderColor(R.color.dialog_1)
-                .setCustomView(customView)
                 .setPositive("Google Play", new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(MaterialDialog dialog, DialogAction which) {
@@ -117,11 +116,32 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
+        final MaterialStyledDialog dialogHeader_5 = new MaterialStyledDialog(context)
+                .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_comment_alt).color(Color.WHITE))
+                .withDialogAnimation(true)
+                .setDescription("What can we improve? Your feedback is always welcome.")
+                .setHeaderColor(R.color.dialog_2)
+                .setCustomView(customView)
+                .setPositive("Feedback", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos/MaterialStyledDialogs/issues")));
+                    }
+                })
+                .setNegative("Not now", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+
         // Init the card views
         CardView dialogHeaderView_1 = (CardView) findViewById(R.id.dialog_1);
         CardView dialogHeaderView_2 = (CardView) findViewById(R.id.dialog_2);
         CardView dialogHeaderView_3 = (CardView) findViewById(R.id.dialog_3);
         CardView dialogHeaderView_4 = (CardView) findViewById(R.id.dialog_4);
+        CardView dialogHeaderView_5 = (CardView) findViewById(R.id.dialog_5);
 
         // Show the previous dialogs
         dialogHeaderView_1.setOnClickListener(new View.OnClickListener() {
@@ -152,11 +172,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        dialogHeaderView_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogHeader_5.show();
+            }
+        });
+
         //custom viewGroup child events
         dismissButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogHeader_1.dismiss();
+                dialogHeader_5.dismiss();
             }
         });
 
