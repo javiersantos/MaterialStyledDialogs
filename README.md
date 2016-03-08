@@ -58,7 +58,7 @@ dialog.show();
 ```
 
 
-## Customization
+## Customizations ([Wiki](https://github.com/javiersantos/MaterialStyledDialogs/wiki))
 ```Java
 // Set an icon for the dialog header.
 .setIcon(R.drawable.ic_launcher)
@@ -111,7 +111,8 @@ dialog.show();
 //.setNeutral(...)
 ```
 ```Java
-// Set a custom view for the dialog
+// Set a custom view for the dialog.
+// Check out the wiki for more documentation: https://github.com/javiersantos/MaterialStyledDialogs/wiki/Adding-a-custom-view
 .setCustomView(your_custom_view)
 ```
 
