@@ -32,7 +32,7 @@ repositories {
 And add the library to your module **build.gradle**:
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:MaterialStyledDialogs:1.2.2'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:1.3'
 }
 ```
 
@@ -109,6 +109,10 @@ dialog.show();
 })
 //.setNegative(...)
 //.setNeutral(...)
+```
+```Java
+// Set a custom view for the dialog
+.setCustomView(your_custom_view)
 ```
 
 ## Apps already using this library
