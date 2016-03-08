@@ -117,6 +117,7 @@ dialog.show();
 ```
 
 ## Apps already using this library
+Feel free to send me new projects by submitting an [issue](https://github.com/javiersantos/MaterialStyledDialogs/issues) or a [pull request](https://github.com/javiersantos/MaterialStyledDialogs/pulls).
 
 <table>
     <tr>
