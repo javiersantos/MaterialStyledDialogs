@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.github.javiersantos.materialstyleddialogs.enums.Duration;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
 
@@ -41,7 +42,7 @@ public class MaterialStyledDialog {
 
     public MaterialStyledDialog(Context context) {
         this.context = context;
-        this.builder = new MaterialDialog.Builder(context);
+        this.builder = new MaterialDialog.Builder(context).theme(Theme.LIGHT);
         this.style = Style.STYLE_HEADER;
         this.isIconAnimation = true;
         this.isDialogAnimation = false;
