@@ -80,9 +80,6 @@ dialog.show();
 // Set if the divider will be displayed before the buttons and after the dialog content.
 // Default: false
 .withDivider(true)
-
-// Default: false, Duration.NORMAL
-.withDialogAnimation(true, Duration.SLOW)
 ```
 ```Java
 // Set a color for the dialog header.
@@ -122,8 +119,7 @@ dialog.show();
 // Set a custom view for the dialog.
 // Check out the wiki for more documentation: https://github.com/javiersantos/MaterialStyledDialogs/wiki/Adding-a-custom-view
 .setCustomView(your_custom_view)
-```
-```Java
+
 // Set a custom view for the dialog with optional padding in DP.
 // Check out the wiki for more documentation: https://github.com/javiersantos/MaterialStyledDialogs/wiki/Adding-a-custom-view
 .setCustomView(your_custom_view, int left, int top, int right, int bottom)
