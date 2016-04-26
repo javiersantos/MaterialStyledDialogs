@@ -30,11 +30,12 @@ public class MaterialStyledDialog {
 
     private Style style; // setStyle()
     private Duration duration; // withDialogAnimation()
-    private Boolean isIconAnimation, isDialogAnimation, isCancelable, scrollable; // withIconAnimation(), withDialogAnimation(), setCancelable(), setScrollable()
+    private Boolean isIconAnimation, isDialogAnimation, isDialogDivider, isCancelable, scrollable; // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable()
     private Drawable headerDrawable, iconDrawable; // setHeaderDrawable(), setIconDrawable()
     private Integer primaryColor, maxLines; // setHeaderColor(), setScrollable()
     private String title, description; // setTitle(), setDescription()
-    private View customView;
+    private View customView; // setCustomView()
+    private int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
 
     // .setPositive(), setNegative() and setNeutral()
     private String positive, negative, neutral;
@@ -46,6 +47,7 @@ public class MaterialStyledDialog {
         this.style = Style.STYLE_HEADER;
         this.isIconAnimation = true;
         this.isDialogAnimation = false;
+        this.isDialogDivider = false;
         this.duration = Duration.NORMAL;
         this.isCancelable = true;
         this.primaryColor = UtilsLibrary.getPrimaryColor(context);
@@ -62,6 +64,30 @@ public class MaterialStyledDialog {
 
     public MaterialStyledDialog setCustomView(View customView){
         this.customView = customView;
+        this.customViewPaddingLeft = 0;
+        this.customViewPaddingRight = 0;
+        this.customViewPaddingTop = 0;
+        this.customViewPaddingBottom = 0;
+        return this;
+    }
+
+    /**
+     * Set custom view for the dialog with optional padding in DP.
+     *
+     * @param customView to apply
+     * @param left padding left in DP
+     * @param top padding top in DP
+     * @param right padding right in DP
+     * @param bottom padding bottom in DP
+     * @return this
+     */
+
+    public MaterialStyledDialog setCustomView(View customView, int left, int top, int right, int bottom){
+        this.customView = customView;
+        this.customViewPaddingLeft = UtilsLibrary.dpToPixels(context, left);
+        this.customViewPaddingRight = UtilsLibrary.dpToPixels(context, right);
+        this.customViewPaddingTop = UtilsLibrary.dpToPixels(context, top);
+        this.customViewPaddingBottom = UtilsLibrary.dpToPixels(context, bottom);
         return this;
     }
 
@@ -121,6 +147,17 @@ public class MaterialStyledDialog {
     public MaterialStyledDialog withDialogAnimation(Boolean withAnimation, Duration duration) {
         this.isDialogAnimation = withAnimation;
         this.duration = duration;
+        return this;
+    }
+
+    /**
+     * Set if the divider will be displayed before the buttons and after the dialog content. Default: false.
+     *
+     * @param withDivider true to enable animation, false otherwise
+     * @return this
+     */
+    public MaterialStyledDialog withDivider(Boolean withDivider) {
+        this.isDialogDivider = withDivider;
         return this;
     }
 
@@ -346,6 +383,7 @@ public class MaterialStyledDialog {
         TextView dialogTitle = (TextView) contentView.findViewById(R.id.md_styled_dialog_title);
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
         FrameLayout dialogCustomViewGroup = (FrameLayout) contentView.findViewById(R.id.md_styled_dialog_custom_view);
+        View dialogDivider = (View) contentView.findViewById(R.id.md_styled_dialog_divider);
 
         // Set header color or drawable
         if (headerDrawable != null && UtilsLibrary.checkApiGreaterThan(16)) {
@@ -357,6 +395,7 @@ public class MaterialStyledDialog {
         //Set the custom view
         if (customView != null){
             dialogCustomViewGroup.addView(customView);
+            dialogCustomViewGroup.setPadding(customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom);
         }
 
         // Set header icon
@@ -386,6 +425,11 @@ public class MaterialStyledDialog {
         // Set icon animation
         if (isIconAnimation) {
             UtilsAnimation.zoomInAndOutAnimation(context, dialogPic);
+        }
+
+        // Show dialog divider if enabled
+        if (isDialogDivider) {
+            dialogDivider.setVisibility(View.VISIBLE);
         }
 
         return contentView;

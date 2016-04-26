@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 .withDialogAnimation(true)
                 .setDescription("What can we improve? Your feedback is always welcome.")
                 .setHeaderColor(R.color.dialog_2)
-                .setCustomView(customView)
+                .setCustomView(customView, 20, 20, 20, 0)
                 .setPositive("Feedback", new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(MaterialDialog dialog, DialogAction which) {
