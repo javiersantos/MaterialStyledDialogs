@@ -117,10 +117,12 @@ dialog.show();
 ```
 ```Java
 // Set a custom view for the dialog.
+// Old standard padding: .setCustomView(your_custom_view, 20, 20, 20, 0)
 // Check out the wiki for more documentation: https://github.com/javiersantos/MaterialStyledDialogs/wiki/Adding-a-custom-view
 .setCustomView(your_custom_view)
 
 // Set a custom view for the dialog with optional padding in DP.
+// Old standard padding: .setCustomView(your_custom_view, 20, 20, 20, 0)
 // Check out the wiki for more documentation: https://github.com/javiersantos/MaterialStyledDialogs/wiki/Adding-a-custom-view
 .setCustomView(your_custom_view, int left, int top, int right, int bottom)
 ```
@@ -132,7 +134,7 @@ Feel free to send me new projects by submitting an [issue](https://github.com/ja
     <tr>
         <td>
             <a target="_blank" href="https://play.google.com/store/apps/details?id=com.materiup.following">
-                <img src="http://www.materiup.com/images/logo.png"
+                <img src="http://www.materiup.com/following/images/logo.png"
                     title="Following: game for Twitter"
                     alt="Following: game for Twitter" height="120">
             </a>
