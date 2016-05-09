@@ -32,7 +32,7 @@ repositories {
 And add the library to your module **build.gradle**:
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:MaterialStyledDialogs:1.4'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:1.4.1'
 }
 ```
 
@@ -88,7 +88,6 @@ dialog.show();
 ```
 ```Java
 // Set an image for the dialog header.
-// API 16+ required.
 .setHeaderDrawable(R.drawable.header)
 ```
 ```Java
