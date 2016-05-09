@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -215,12 +216,11 @@ public class MaterialStyledDialog {
     }
 
     /**
-     * Set an image for the dialog header
+     * Set an image for the dialog header.
      *
      * @param drawable image for the header
      * @return this
      */
-    @TargetApi(16)
     public MaterialStyledDialog setHeaderDrawable(@NonNull Drawable drawable) {
         this.headerDrawable = drawable;
         return this;
@@ -232,7 +232,6 @@ public class MaterialStyledDialog {
      * @param drawableRes image for the header
      * @return this
      */
-    @TargetApi(16)
     public MaterialStyledDialog setHeaderDrawable(@DrawableRes Integer drawableRes) {
         this.headerDrawable = ResourcesCompat.getDrawable(context.getResources(), drawableRes, null);
         return this;
@@ -378,19 +377,19 @@ public class MaterialStyledDialog {
         }
 
         // Init Views
-        LinearLayout dialogHeader = (LinearLayout) contentView.findViewById(R.id.md_styled_header);
-        ImageView dialogPic = (ImageView) contentView.findViewById(R.id.md_styled_dialog_pic);
+        RelativeLayout dialogHeaderColor = (RelativeLayout) contentView.findViewById(R.id.md_styled_header_color);
+        ImageView dialogHeader = (ImageView) contentView.findViewById(R.id.md_styled_header);
+        ImageView dialogPic = (ImageView) contentView.findViewById(R.id.md_styled_header_pic);
         TextView dialogTitle = (TextView) contentView.findViewById(R.id.md_styled_dialog_title);
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
         FrameLayout dialogCustomViewGroup = (FrameLayout) contentView.findViewById(R.id.md_styled_dialog_custom_view);
         View dialogDivider = (View) contentView.findViewById(R.id.md_styled_dialog_divider);
 
         // Set header color or drawable
-        if (headerDrawable != null && UtilsLibrary.checkApiGreaterThan(16)) {
-            dialogHeader.setBackground(headerDrawable); // TODO API<16
-        } else {
-            dialogHeader.setBackgroundColor(primaryColor);
+        if (headerDrawable != null) {
+            dialogHeader.setImageDrawable(headerDrawable);
         }
+        dialogHeaderColor.setBackgroundColor(primaryColor);
 
         //Set the custom view
         if (customView != null){

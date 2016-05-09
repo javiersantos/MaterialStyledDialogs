@@ -5,17 +5,21 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/md_styled_header"
+    <RelativeLayout
+        android:id="@+id/md_styled_header_color"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/md_styled_dialog_header"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/md_styled_dialog_header">
         <ImageView
-            android:id="@+id/md_styled_dialog_pic"
+            android:id="@+id/md_styled_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/md_styled_header_pic"
             android:layout_width="@dimen/md_styled_pic_size"
-            android:layout_height="@dimen/md_styled_pic_size" />
-    </LinearLayout>
+            android:layout_height="@dimen/md_styled_pic_size"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
