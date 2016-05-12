@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.method.ScrollingMovementMethod;
@@ -13,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,7 +34,7 @@ public class MaterialStyledDialog {
     private Boolean isIconAnimation, isDialogAnimation, isDialogDivider, isCancelable, scrollable; // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable()
     private Drawable headerDrawable, iconDrawable; // setHeaderDrawable(), setIconDrawable()
     private Integer primaryColor, maxLines; // setHeaderColor(), setScrollable()
-    private String title, description; // setTitle(), setDescription()
+    private CharSequence title, description; // setTitle(), setDescription()
     private View customView; // setCustomView()
     private int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
 
@@ -185,11 +185,33 @@ public class MaterialStyledDialog {
     /**
      * Set a title for the dialog
      *
+     * @param titleRes to show
+     * @return this
+     */
+    public MaterialStyledDialog setTitle(@StringRes int titleRes) {
+        setTitle(this.context.getString(titleRes));
+        return this;
+    }
+
+    /**
+     * Set a title for the dialog
+     *
      * @param title to show
      * @return this
      */
-    public MaterialStyledDialog setTitle(@NonNull String title) {
+    public MaterialStyledDialog setTitle(@NonNull CharSequence title) {
         this.title = title;
+        return this;
+    }
+
+    /**
+     * Set a description for the dialog
+     *
+     * @param descriptionRes to show
+     * @return this
+     */
+    public MaterialStyledDialog setDescription(@StringRes int descriptionRes) {
+        setDescription(this.context.getString(descriptionRes));
         return this;
     }
 
@@ -199,7 +221,7 @@ public class MaterialStyledDialog {
      * @param description to show
      * @return this
      */
-    public MaterialStyledDialog setDescription(@NonNull String description) {
+    public MaterialStyledDialog setDescription(@NonNull CharSequence description) {
         this.description = description;
         return this;
     }
@@ -383,7 +405,7 @@ public class MaterialStyledDialog {
         TextView dialogTitle = (TextView) contentView.findViewById(R.id.md_styled_dialog_title);
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
         FrameLayout dialogCustomViewGroup = (FrameLayout) contentView.findViewById(R.id.md_styled_dialog_custom_view);
-        View dialogDivider = (View) contentView.findViewById(R.id.md_styled_dialog_divider);
+        View dialogDivider = contentView.findViewById(R.id.md_styled_dialog_divider);
 
         // Set header color or drawable
         if (headerDrawable != null) {
@@ -410,15 +432,17 @@ public class MaterialStyledDialog {
         }
 
         // Set dialog description
-        dialogDescription.setText(description);
+        if (description != null && description.length() != 0) {
+            dialogDescription.setText(description);
 
-        // Set scrollable
-        dialogDescription.setVerticalScrollBarEnabled(scrollable);
-        if (scrollable) {
-            dialogDescription.setMaxLines(maxLines);
-            dialogDescription.setMovementMethod(new ScrollingMovementMethod());
-        } else {
-            dialogDescription.setMaxLines(Integer.MAX_VALUE);
+            // Set scrollable
+            dialogDescription.setVerticalScrollBarEnabled(scrollable);
+            if (scrollable) {
+                dialogDescription.setMaxLines(maxLines);
+                dialogDescription.setMovementMethod(new ScrollingMovementMethod());
+            } else {
+                dialogDescription.setMaxLines(Integer.MAX_VALUE);
+            }
         }
 
         // Set icon animation
