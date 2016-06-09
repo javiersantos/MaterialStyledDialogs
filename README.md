@@ -32,7 +32,7 @@ repositories {
 And add the library to your module **build.gradle**:
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:MaterialStyledDialogs:1.4.1'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:1.5'
 }
 ```
 
