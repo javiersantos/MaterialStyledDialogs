@@ -19,6 +19,7 @@ import android.widget.Button;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.github.javiersantos.materialstyleddialogs.enums.Style;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
@@ -136,12 +137,54 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
+        final MaterialStyledDialog dialogHeader_6 = new MaterialStyledDialog(context)
+                .setStyle(Style.HEADER_WITH_TITLE)
+                .withDialogAnimation(true)
+                .setTitle("Awesome!")
+                .setDescription("Glad to see you like MaterialStyledDialogs! If you're up for it, we would really appreciate you reviewing us.")
+                .setHeaderColor(R.color.dialog_1)
+                .setPositive("Google Play", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
+                    }
+                })
+                .setNegative("Later", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+
+        final MaterialStyledDialog dialogHeader_7 = new MaterialStyledDialog(context)
+                .setStyle(Style.HEADER_WITH_TITLE)
+                .setHeaderDrawable(R.drawable.header)
+                .withDialogAnimation(true)
+                .setTitle("An awesome library?")
+                .setDescription("Do you like this library? Check out my other Open Source libraries and apps!")
+                .setPositive("GitHub", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos")));
+                    }
+                })
+                .setNegative("Not now", new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+
         // Init the card views
         CardView dialogHeaderView_1 = (CardView) findViewById(R.id.dialog_1);
         CardView dialogHeaderView_2 = (CardView) findViewById(R.id.dialog_2);
         CardView dialogHeaderView_3 = (CardView) findViewById(R.id.dialog_3);
         CardView dialogHeaderView_4 = (CardView) findViewById(R.id.dialog_4);
         CardView dialogHeaderView_5 = (CardView) findViewById(R.id.dialog_5);
+        CardView dialogHeaderView_6 = (CardView) findViewById(R.id.dialog_6);
+        CardView dialogHeaderView_7 = (CardView) findViewById(R.id.dialog_7);
 
         // Show the previous dialogs
         dialogHeaderView_1.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +219,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialogHeader_5.show();
+            }
+        });
+
+        dialogHeaderView_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogHeader_6.show();
+            }
+        });
+
+        dialogHeaderView_7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogHeader_7.show();
             }
         });
 
