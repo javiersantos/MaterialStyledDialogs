@@ -2,6 +2,8 @@ package com.github.javiersantos.materialstyleddialogs;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -10,6 +12,7 @@ import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -45,7 +48,7 @@ public class MaterialStyledDialog {
     public MaterialStyledDialog(Context context) {
         this.context = context;
         this.builder = new MaterialDialog.Builder(context).theme(Theme.LIGHT);
-        this.style = Style.STYLE_HEADER;
+        this.style = Style.HEADER_WITH_ICON;
         this.isIconAnimation = true;
         this.isDialogAnimation = false;
         this.isDialogDivider = false;
@@ -393,8 +396,14 @@ public class MaterialStyledDialog {
         View contentView;
 
         switch (style) {
+            case HEADER_WITH_ICON:
+                contentView = inflater.inflate(R.layout.style_dialog_header_icon, null);
+                break;
+            case HEADER_WITH_TITLE:
+                contentView = inflater.inflate(R.layout.style_dialog_header_title, null);
+                break;
             default:
-                contentView = inflater.inflate(R.layout.style_dialog_header, null);
+                contentView = inflater.inflate(R.layout.style_dialog_header_icon, null);
                 break;
         }
 
@@ -410,6 +419,10 @@ public class MaterialStyledDialog {
         // Set header color or drawable
         if (headerDrawable != null) {
             dialogHeader.setImageDrawable(headerDrawable);
+            if (style == Style.HEADER_WITH_TITLE) {
+                // Apply some darker to the header when STYLE_HEADER_TITLE is enabled
+                dialogHeader.setColorFilter(Color.rgb(123, 123, 123), PorterDuff.Mode.MULTIPLY);
+            }
         }
         dialogHeaderColor.setBackgroundColor(primaryColor);
 
@@ -421,7 +434,11 @@ public class MaterialStyledDialog {
 
         // Set header icon
         if (iconDrawable != null) {
-            dialogPic.setImageDrawable(iconDrawable);
+            if (style == Style.HEADER_WITH_TITLE) {
+                Log.e("MaterialStyledDialog", "You can't set an icon to the HEADER_WITH_TITLE style.");
+            } else {
+                dialogPic.setImageDrawable(iconDrawable);
+            }
         }
 
         // Set dialog title
@@ -447,7 +464,9 @@ public class MaterialStyledDialog {
 
         // Set icon animation
         if (isIconAnimation) {
-            UtilsAnimation.zoomInAndOutAnimation(context, dialogPic);
+            if (style != Style.HEADER_WITH_TITLE) {
+                UtilsAnimation.zoomInAndOutAnimation(context, dialogPic);
+            }
         }
 
         // Show dialog divider if enabled

@@ -57,8 +57,14 @@ MaterialStyledDialog dialog = new MaterialStyledDialog(this)
 dialog.show();
 ```
 
+### Style
+| ![Style 1](https://raw.githubusercontent.com/javiersantos/MaterialStyledDialogs/master/Screenshots/style-1.png) | ![Style 2](https://raw.githubusercontent.com/javiersantos/MaterialStyledDialogs/master/Screenshots/style-2.png) |
+|---|---|
+| Header with Icon (default): `.setStyle(Style.HEADER_WITH_ICON)` | Header with Title: `.setStyle(Style.HEADER_WITH_TITLE)` |
+
 
 ## Customizations ([Wiki](https://github.com/javiersantos/MaterialStyledDialogs/wiki))
+
 ```Java
 // Set an icon for the dialog header.
 .setIcon(R.drawable.ic_launcher)

@@ -1,5 +1,6 @@
 package com.github.javiersantos.materialstyleddialogs.enums;
 
 public enum Style {
-    STYLE_HEADER
+    HEADER_WITH_ICON,
+    HEADER_WITH_TITLE
 }
