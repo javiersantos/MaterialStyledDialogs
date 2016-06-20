@@ -133,7 +133,7 @@ new MaterialStyledDialog(this)
 ```
 
 ### Adding icon and dialog animations
-An animation to the icon will be displayed when opened the dialog.
+An animation to the icon will be displayed when the dialog is opened. `true` by default.
 
 ```Java
 new MaterialStyledDialog(this)
@@ -143,7 +143,7 @@ new MaterialStyledDialog(this)
 	.show();
 ```
 
-The dialog will be displayed with an animation when it is opened and closed.
+The dialog will be displayed with an animation when it is opened and closed. `false` by default.
 
 ```Java
 new MaterialStyledDialog(this)
@@ -173,7 +173,7 @@ new MaterialStyledDialog(this)
 
 If no `setPositive(...)`, `setNegative(...)` or `setNeutral(...)` callbacks are provided, then the bottom dialog will be dismissed when tapping de button.
 
-A divider before the buttons can be added using the `.withDivider(true)` method.
+A divider before the buttons can be added using the `.withDivider(true)` method (`false` by default).
 
 ### Dismissing when touching outside
 The `setCancelable()` method lets you disable dismissing the bottom dialog when you tap outside the dialog window. `true` by default.
