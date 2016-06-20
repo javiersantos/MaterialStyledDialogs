@@ -34,7 +34,7 @@ public class MaterialStyledDialog {
 
     private Style style; // setStyle()
     private Duration duration; // withDialogAnimation()
-    private Boolean isIconAnimation, isDialogAnimation, isDialogDivider, isCancelable, scrollable; // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable()
+    private boolean isIconAnimation, isDialogAnimation, isDialogDivider, isCancelable, isScrollable, isDarkerOverlay; // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable(), withDarkerOverlay()
     private Drawable headerDrawable, iconDrawable; // setHeaderDrawable(), setIconDrawable()
     private Integer primaryColor, maxLines; // setHeaderColor(), setScrollable()
     private CharSequence title, description; // setTitle(), setDescription()
@@ -52,10 +52,11 @@ public class MaterialStyledDialog {
         this.isIconAnimation = true;
         this.isDialogAnimation = false;
         this.isDialogDivider = false;
+        this.isDarkerOverlay = false;
         this.duration = Duration.NORMAL;
         this.isCancelable = true;
         this.primaryColor = UtilsLibrary.getPrimaryColor(context);
-        this.scrollable = false;
+        this.isScrollable = false;
         this.maxLines = 5;
     }
 
@@ -162,6 +163,17 @@ public class MaterialStyledDialog {
      */
     public MaterialStyledDialog withDivider(Boolean withDivider) {
         this.isDialogDivider = withDivider;
+        return this;
+    }
+
+    /**
+     * Set if the header will display a gray/darker overlay. Default: false.
+     *
+     * @param withDarkerOverlay true to apply a darker overlay, false otherwise
+     * @return this
+     */
+    public MaterialStyledDialog withDarkerOverlay(Boolean withDarkerOverlay) {
+        this.isDarkerOverlay = withDarkerOverlay;
         return this;
     }
 
@@ -313,24 +325,24 @@ public class MaterialStyledDialog {
     }
 
     /**
-     * Set if the description will be scrollable. Default: false.
+     * Set if the description will be isScrollable. Default: false.
      *
-     * @param scrollable true to enable scrollable description, false otherwise
+     * @param scrollable true to enable isScrollable description, false otherwise
      * @return this
      */
     public MaterialStyledDialog setScrollable(Boolean scrollable) {
-        this.scrollable = scrollable;
+        this.isScrollable = scrollable;
         return this;
     }
 
     /**
-     * Set if the description will be scrollable, with custom maximum lines. Default: false, 5.
+     * Set if the description will be isScrollable, with custom maximum lines. Default: false, 5.
      *
-     * @param scrollable true to enable scrollable description, false otherwise
+     * @param scrollable true to enable isScrollable description, false otherwise
      * @return this
      */
     public MaterialStyledDialog setScrollable(Boolean scrollable, Integer maxLines) {
-        this.scrollable = scrollable;
+        this.isScrollable = scrollable;
         this.maxLines = maxLines;
         return this;
     }
@@ -419,8 +431,8 @@ public class MaterialStyledDialog {
         // Set header color or drawable
         if (headerDrawable != null) {
             dialogHeader.setImageDrawable(headerDrawable);
-            if (style == Style.HEADER_WITH_TITLE) {
-                // Apply some darker to the header when STYLE_HEADER_TITLE is enabled
+            // Apply gray/darker overlay to the header if enabled
+            if (isDarkerOverlay) {
                 dialogHeader.setColorFilter(Color.rgb(123, 123, 123), PorterDuff.Mode.MULTIPLY);
             }
         }
@@ -453,8 +465,8 @@ public class MaterialStyledDialog {
             dialogDescription.setText(description);
 
             // Set scrollable
-            dialogDescription.setVerticalScrollBarEnabled(scrollable);
-            if (scrollable) {
+            dialogDescription.setVerticalScrollBarEnabled(isScrollable);
+            if (isScrollable) {
                 dialogDescription.setMaxLines(maxLines);
                 dialogDescription.setMovementMethod(new ScrollingMovementMethod());
             } else {

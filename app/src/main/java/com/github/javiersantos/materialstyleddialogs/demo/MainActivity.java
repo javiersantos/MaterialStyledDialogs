@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 .setStyle(Style.HEADER_WITH_TITLE)
                 .setHeaderDrawable(R.drawable.header)
                 .withDialogAnimation(true)
+                .withDarkerOverlay(true)
                 .setTitle("An awesome library?")
                 .setDescription("Do you like this library? Check out my other Open Source libraries and apps!")
                 .setPositive("GitHub", new MaterialDialog.SingleButtonCallback() {
