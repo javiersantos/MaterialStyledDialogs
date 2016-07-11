@@ -472,6 +472,8 @@ public class MaterialStyledDialog {
             } else {
                 dialogDescription.setMaxLines(Integer.MAX_VALUE);
             }
+        } else {
+            dialogDescription.setVisibility(View.GONE);
         }
 
         // Set icon animation
