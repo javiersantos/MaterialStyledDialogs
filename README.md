@@ -223,6 +223,13 @@ Feel free to send me new projects by submitting an [issue](https://github.com/ja
                     alt="Following: game for Twitter" height="120">
             </a>
         </td>
+       <td>
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.frontendart.qualitygate.android">
+                <img src="https://lh3.googleusercontent.com/dvIZu7L-bSNdZ3eJ5exx-EuPN_5Pen15SkXhuNwCis8xRvq7fqWoTHgQMZFhUt_69es"
+                    title="QualityGate"
+                    alt="QualityGate" height="120">
+            </a>
+        </td>
     </tr>
 </table>
 
