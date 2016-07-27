@@ -173,6 +173,8 @@ new MaterialStyledDialog(this)
 
 If no `setPositive(...)`, `setNegative(...)` or `setNeutral(...)` callbacks are provided, then the bottom dialog will be dismissed when tapping de button.
 
+If `autoDismiss()` is turned `false`, then you must manually dismiss the dialog in these callbacks. Auto dismiss is `true` by default.
+
 A divider before the buttons can be added using the `.withDivider(true)` method (`false` by default).
 
 ### Dismissing when touching outside
