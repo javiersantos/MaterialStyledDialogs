@@ -40,6 +40,7 @@ public class MaterialStyledDialog {
     private CharSequence title, description; // setTitle(), setDescription()
     private View customView; // setCustomView()
     private int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
+    private ImageView.ScaleType headerScaleType;
 
     // .setPositive(), setNegative() and setNeutral()
     private String positive, negative, neutral;
@@ -59,6 +60,7 @@ public class MaterialStyledDialog {
         this.isScrollable = false;
         this.maxLines = 5;
         this.isAutoDismiss = true;
+        this.headerScaleType = ImageView.ScaleType.CENTER_CROP;
     }
 
     /**
@@ -282,7 +284,7 @@ public class MaterialStyledDialog {
      * @param callback action to do
      * @return this
      */
-    public MaterialStyledDialog setPositive(@NonNull String text, @NonNull MaterialDialog.SingleButtonCallback callback) {
+    public MaterialStyledDialog setPositive(String text, MaterialDialog.SingleButtonCallback callback) {
         this.positive = text;
         this.positiveCallback = callback;
         return this;
@@ -295,7 +297,7 @@ public class MaterialStyledDialog {
      * @param callback action to do
      * @return this
      */
-    public MaterialStyledDialog setNegative(@NonNull String text, @NonNull MaterialDialog.SingleButtonCallback callback) {
+    public MaterialStyledDialog setNegative(String text, MaterialDialog.SingleButtonCallback callback) {
         this.negative = text;
         this.negativeCallback = callback;
         return this;
@@ -308,9 +310,14 @@ public class MaterialStyledDialog {
      * @param callback action to do
      * @return this
      */
-    public MaterialStyledDialog setNeutral(@NonNull String text, @NonNull MaterialDialog.SingleButtonCallback callback) {
+    public MaterialStyledDialog setNeutral(String text, MaterialDialog.SingleButtonCallback callback) {
         this.neutral = text;
         this.neutralCallback = callback;
+        return this;
+    }
+
+    public MaterialStyledDialog setHeaderScaleType(ImageView.ScaleType scaleType) {
+        this.headerScaleType = scaleType;
         return this;
     }
 
@@ -446,6 +453,7 @@ public class MaterialStyledDialog {
             }
         }
         dialogHeaderColor.setBackgroundColor(primaryColor);
+        dialogHeader.setScaleType(headerScaleType);
 
         //Set the custom view
         if (customView != null){
