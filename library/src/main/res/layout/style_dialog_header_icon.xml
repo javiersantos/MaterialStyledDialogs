@@ -14,8 +14,8 @@
         <ImageView
             android:id="@+id/md_styled_header"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent" />
+
         <ImageView
             android:id="@+id/md_styled_header_pic"
             android:layout_width="@dimen/md_styled_pic_size"
