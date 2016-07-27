@@ -34,7 +34,7 @@ public class MaterialStyledDialog {
 
     private Style style; // setStyle()
     private Duration duration; // withDialogAnimation()
-    private boolean isIconAnimation, isDialogAnimation, isDialogDivider, isCancelable, isScrollable, isDarkerOverlay; // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable(), withDarkerOverlay()
+    private boolean isIconAnimation, isDialogAnimation, isDialogDivider, isCancelable, isScrollable, isDarkerOverlay, isAutoDismiss; // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable(), withDarkerOverlay(), autoDismiss()
     private Drawable headerDrawable, iconDrawable; // setHeaderDrawable(), setIconDrawable()
     private Integer primaryColor, maxLines; // setHeaderColor(), setScrollable()
     private CharSequence title, description; // setTitle(), setDescription()
@@ -58,6 +58,7 @@ public class MaterialStyledDialog {
         this.primaryColor = UtilsLibrary.getPrimaryColor(context);
         this.isScrollable = false;
         this.maxLines = 5;
+        this.isAutoDismiss = true;
     }
 
     /**
@@ -347,6 +348,11 @@ public class MaterialStyledDialog {
         return this;
     }
 
+    public MaterialStyledDialog autoDismiss(Boolean dismiss) {
+        this.isAutoDismiss = dismiss;
+        return this;
+    }
+
     @UiThread
     public MaterialStyledDialog build() {
         // Set cancelable
@@ -372,6 +378,9 @@ public class MaterialStyledDialog {
             builder.neutralText(neutral);
             builder.onNeutral(neutralCallback);
         }
+
+        // Set auto dismiss when touching the buttons
+        builder.autoDismiss(isAutoDismiss);
 
         // Build the dialog with the previous configuration
         materialDialog = builder.build();
