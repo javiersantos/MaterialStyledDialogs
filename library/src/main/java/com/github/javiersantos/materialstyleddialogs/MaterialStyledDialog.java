@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -250,8 +251,19 @@ public class MaterialStyledDialog {
      * @param color for the header
      * @return this
      */
-    public MaterialStyledDialog setHeaderColor(@ColorRes Integer color) {
+    public MaterialStyledDialog setHeaderColor(@ColorRes int color) {
         this.primaryColor = UtilsLibrary.getColor(context, color);
+        return this;
+    }
+
+    /**
+     * Set a color for the dialog header. Default: Theme primary color.
+     *
+     * @param color for the header
+     * @return this
+     */
+    public MaterialStyledDialog setHeaderColorInt(@ColorInt int color) {
+        this.primaryColor = color;
         return this;
     }
 
@@ -316,6 +328,12 @@ public class MaterialStyledDialog {
         return this;
     }
 
+    /**
+     * Set the scale type for the header ImageView.
+     *
+     * @param scaleType the scale type for the header ImageView
+     * @return this
+     */
     public MaterialStyledDialog setHeaderScaleType(ImageView.ScaleType scaleType) {
         this.headerScaleType = scaleType;
         return this;
