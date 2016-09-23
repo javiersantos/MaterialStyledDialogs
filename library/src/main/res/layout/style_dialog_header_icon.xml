@@ -25,29 +25,16 @@
     </RelativeLayout>
 
     <TextView
+        style="@style/MaterialStyledDialogs_Title"
         android:id="@+id/md_styled_dialog_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="26dp"
-        android:layout_marginRight="26dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="-10dp"
-        android:textColor="@android:color/primary_text_light"
-        android:textSize="@dimen/md_styled_text_title"
-        android:textStyle="bold"
-        android:alpha="0.6" />
+        android:layout_height="wrap_content" />
 
     <TextView
+        style="@style/MaterialStyledDialogs_Description"
         android:id="@+id/md_styled_dialog_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="26dp"
-        android:layout_marginRight="26dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_vertical|start"
-        android:textColor="@android:color/primary_text_light"
-        android:textSize="@dimen/md_styled_text_description"
-        android:alpha="0.6" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -61,13 +48,8 @@
     </ScrollView>
 
     <View
+        style="@style/MaterialStyledDialogs_Divider"
         android:id="@+id/md_styled_dialog_divider"
         android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@android:color/darker_gray"
-        android:alpha="0.3" />
+        android:layout_width="match_parent" />
 </LinearLayout>
