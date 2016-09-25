@@ -61,22 +61,22 @@ public class MaterialStyledDialog {
         dialogBuilder.customView(initStyle(builder), false);
 
         // Set positive button
-        if (builder.positive != null && builder.positive.length() != 0) {
+        if (builder.positive != null && builder.positive.length() != 0)
             dialogBuilder.positiveText(builder.positive);
+        if (builder.positiveCallback != null)
             dialogBuilder.onPositive(builder.positiveCallback);
-        }
 
         // set negative button
-        if (builder.negative != null && builder.negative.length() != 0) {
+        if (builder.negative != null && builder.negative.length() != 0)
             dialogBuilder.negativeText(builder.negative);
+        if (builder.negativeCallback != null)
             dialogBuilder.onNegative(builder.negativeCallback);
-        }
 
         // Set neutral button
-        if (builder.neutral != null && builder.neutral.length() != 0) {
+        if (builder.neutral != null && builder.neutral.length() != 0)
             dialogBuilder.neutralText(builder.neutral);
+        if (builder.neutralCallback != null)
             dialogBuilder.onNeutral(builder.neutralCallback);
-        }
 
         // Set auto dismiss when touching the buttons
         dialogBuilder.autoDismiss(builder.isAutoDismiss);
@@ -206,7 +206,7 @@ public class MaterialStyledDialog {
         protected ImageView.ScaleType headerScaleType;
 
         // .setPositive(), setNegative() and setNeutral()
-        protected String positive, negative, neutral;
+        protected CharSequence positive, negative, neutral;
         protected MaterialDialog.SingleButtonCallback positiveCallback, negativeCallback, neutralCallback;
 
         public Builder(Context context) {
@@ -343,6 +343,7 @@ public class MaterialStyledDialog {
         }
 
         @Override
+        @Deprecated
         public Builder setPositive(String text, MaterialDialog.SingleButtonCallback callback) {
             this.positive = text;
             this.positiveCallback = callback;
@@ -350,6 +351,25 @@ public class MaterialStyledDialog {
         }
 
         @Override
+        public Builder setPositiveText(@StringRes int buttonTextRes) {
+            setPositiveText(this.context.getString(buttonTextRes));
+            return this;
+        }
+
+        @Override
+        public Builder setPositiveText(@NonNull CharSequence buttonText) {
+            this.positive = buttonText;
+            return this;
+        }
+
+        @Override
+        public Builder onPositive(@NonNull MaterialDialog.SingleButtonCallback callback) {
+            this.positiveCallback = callback;
+            return this;
+        }
+
+        @Override
+        @Deprecated
         public Builder setNegative(String text, MaterialDialog.SingleButtonCallback callback) {
             this.negative = text;
             this.negativeCallback = callback;
@@ -357,8 +377,45 @@ public class MaterialStyledDialog {
         }
 
         @Override
+        public Builder setNegativeText(@StringRes int buttonTextRes) {
+            setNegativeText(this.context.getString(buttonTextRes));
+            return this;
+        }
+
+        @Override
+        public Builder setNegativeText(@NonNull CharSequence buttonText) {
+            this.negative = buttonText;
+            return this;
+        }
+
+        @Override
+        public Builder onNegative(@NonNull MaterialDialog.SingleButtonCallback callback) {
+            this.negativeCallback = callback;
+            return this;
+        }
+
+        @Override
+        @Deprecated
         public Builder setNeutral(String text, MaterialDialog.SingleButtonCallback callback) {
             this.neutral = text;
+            this.neutralCallback = callback;
+            return this;
+        }
+
+        @Override
+        public Builder setNeutralText(@StringRes int buttonTextRes) {
+            setNeutralText(this.context.getString(buttonTextRes));
+            return this;
+        }
+
+        @Override
+        public Builder setNeutralText(@NonNull CharSequence buttonText) {
+            this.neutral = buttonText;
+            return this;
+        }
+
+        @Override
+        public Builder onNeutral(@NonNull MaterialDialog.SingleButtonCallback callback) {
             this.neutralCallback = callback;
             return this;
         }

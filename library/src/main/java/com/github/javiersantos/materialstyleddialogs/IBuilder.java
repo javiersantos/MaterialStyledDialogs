@@ -170,27 +170,102 @@ public interface IBuilder {
      *
      * @param text     for the button
      * @param callback action to do
+     * @deprecated use {{@link #setPositiveText(CharSequence)}, {@link #setPositiveText(int)} and {@link #onPositive(MaterialDialog.SingleButtonCallback)}} instead
      * @return this
      */
     MaterialStyledDialog.Builder setPositive(String text, MaterialDialog.SingleButtonCallback callback);
+
+    /**
+     * Set a positive button text for the dialog. E.g.: R.string.accept
+     *
+     * @param buttonTextRes     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder setPositiveText(@StringRes int buttonTextRes);
+
+    /**
+     * Set a positive button text for the dialog. E.g.: "Accept"
+     *
+     * @param buttonText     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder setPositiveText(@NonNull CharSequence buttonText);
+
+    /**
+     * Set a positive button action for the dialog
+     *
+     * @param callback     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder onPositive(@NonNull MaterialDialog.SingleButtonCallback callback);
 
     /**
      * Set a negative button for the dialog
      *
      * @param text     for the button
      * @param callback action to do
+     * @deprecated use {{@link #setNegativeText(CharSequence)}, {@link #setNegativeText(int)} and {@link #onNegative(MaterialDialog.SingleButtonCallback)}} instead
      * @return this
      */
     MaterialStyledDialog.Builder setNegative(String text, MaterialDialog.SingleButtonCallback callback);
+
+    /**
+     * Set a negative button text for the dialog. E.g.: R.string.cancel
+     *
+     * @param buttonTextRes     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder setNegativeText(@StringRes int buttonTextRes);
+
+    /**
+     * Set a negative button text for the dialog. E.g.: "Decline"
+     *
+     * @param buttonText     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder setNegativeText(@NonNull CharSequence buttonText);
+
+    /**
+     * Set a negative button action for the dialog
+     *
+     * @param callback     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder onNegative(@NonNull MaterialDialog.SingleButtonCallback callback);
 
     /**
      * Set a neutral button for the dialog
      *
      * @param text     for the button
      * @param callback action to do
+     * @deprecated use {{@link #setNeutralText(CharSequence)}, {@link #setNeutralText(int)} and {@link #onNeutral(MaterialDialog.SingleButtonCallback)}} instead
      * @return this
      */
     MaterialStyledDialog.Builder setNeutral(String text, MaterialDialog.SingleButtonCallback callback);
+
+    /**
+     * Set a neutral button text for the dialog. E.g.: R.string.later
+     *
+     * @param buttonTextRes     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder setNeutralText(@StringRes int buttonTextRes);
+
+    /**
+     * Set a neutral button text for the dialog. E.g.: "Maybe later"
+     *
+     * @param buttonText     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder setNeutralText(@NonNull CharSequence buttonText);
+
+    /**
+     * Set a neutral button action for the dialog
+     *
+     * @param callback     for the button
+     * @return this
+     */
+    MaterialStyledDialog.Builder onNeutral(@NonNull MaterialDialog.SingleButtonCallback callback);
 
     /**
      * Set the scale type for the header ImageView.

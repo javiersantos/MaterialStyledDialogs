@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -46,18 +47,14 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Awesome!")
                 .setDescription("Glad to see you like MaterialStyledDialogs! If you're up for it, we would really appreciate you reviewing us.")
                 .setHeaderColor(R.color.dialog_1)
-                .setPositive("Google Play", new MaterialDialog.SingleButtonCallback() {
+                .setPositiveText("Google Play")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
                     }
                 })
-                .setNegative("Later", new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        dialog.dismiss();
-                    }
-                })
+                .setNegativeText("Later")
                 .build();
 
         final MaterialStyledDialog dialogHeader_2 = new MaterialStyledDialog.Builder(context)
@@ -65,18 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 .withIconAnimation(false)
                 .setDescription("What can we improve? Your feedback is always welcome.")
                 .setHeaderColor(R.color.dialog_2)
-                .setPositive("Feedback", new MaterialDialog.SingleButtonCallback() {
+                .setPositiveText("Feedback")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos/MaterialStyledDialogs/issues")));
                     }
                 })
-                .setNegative("Not now", new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        dialog.dismiss();
-                    }
-                })
+                .setNegativeText("Not now")
                 .build();
 
         final MaterialStyledDialog dialogHeader_3 = new MaterialStyledDialog.Builder(context)
@@ -85,36 +78,28 @@ public class MainActivity extends AppCompatActivity {
                 .withDialogAnimation(true)
                 .setTitle("An awesome library?")
                 .setDescription("Do you like this library? Check out my other Open Source libraries and apps!")
-                .setPositive("GitHub", new MaterialDialog.SingleButtonCallback() {
+                .setPositiveText("GitHub")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos")));
                     }
                 })
-                .setNegative("Not now", new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        dialog.dismiss();
-                    }
-                })
+                .setNegativeText("Not now")
                 .build();
 
         final MaterialStyledDialog dialogHeader_4 = new MaterialStyledDialog.Builder(context)
                 .setHeaderDrawable(R.drawable.header_2)
                 .setTitle("Sweet!")
                 .setDescription("Check out my others apps with Material Design available on Google Play. Hope you find them interesting!")
-                .setPositive("Google Play", new MaterialDialog.SingleButtonCallback() {
+                .setPositiveText("Google Play")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=9205902632927830308")));
                     }
                 })
-                .setNegative("Not now", new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        dialog.dismiss();
-                    }
-                })
+                .setNegativeText("Not now")
                 .build();
 
         final MaterialStyledDialog dialogHeader_5 = new MaterialStyledDialog.Builder(context)
@@ -123,16 +108,11 @@ public class MainActivity extends AppCompatActivity {
                 .setDescription("What can we improve? Your feedback is always welcome.")
                 .setHeaderColor(R.color.dialog_2)
                 .setCustomView(customView, 20, 20, 20, 0)
-                .setPositive("Feedback", new MaterialDialog.SingleButtonCallback() {
+                .setPositiveText("Feedback")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos/MaterialStyledDialogs/issues")));
-                    }
-                })
-                .setNegative("Not now", new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        dialog.dismiss();
                     }
                 })
                 .build();
@@ -143,18 +123,14 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Awesome!")
                 .setDescription("Glad to see you like MaterialStyledDialogs! If you're up for it, we would really appreciate you reviewing us.")
                 .setHeaderColor(R.color.dialog_1)
-                .setPositive("Google Play", new MaterialDialog.SingleButtonCallback() {
+                .setPositiveText("Google Play")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
                     }
                 })
-                .setNegative("Later", new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        dialog.dismiss();
-                    }
-                })
+                .setNegativeText("Later")
                 .build();
 
         final MaterialStyledDialog dialogHeader_7 = new MaterialStyledDialog.Builder(context)
@@ -164,18 +140,14 @@ public class MainActivity extends AppCompatActivity {
                 .withDarkerOverlay(true)
                 .setTitle("An awesome library?")
                 .setDescription("Do you like this library? Check out my other Open Source libraries and apps!")
-                .setPositive("GitHub", new MaterialDialog.SingleButtonCallback() {
+                .setPositiveText("GitHub")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos")));
                     }
                 })
-                .setNegative("Not now", new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(MaterialDialog dialog, DialogAction which) {
-                        dialog.dismiss();
-                    }
-                })
+                .setNegativeText("Not now")
                 .build();
 
         // Init the card views
