@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Button dismissButton = (Button)customView.findViewById(R.id.custom_button);
 
         // Build some dialogs for the sample app
-        final MaterialStyledDialog dialogHeader_1 = new MaterialStyledDialog(context)
+        final MaterialStyledDialog dialogHeader_1 = new MaterialStyledDialog.Builder(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_google_play).color(Color.WHITE))
                 .withDialogAnimation(true)
                 .setTitle("Awesome!")
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        final MaterialStyledDialog dialogHeader_2 = new MaterialStyledDialog(context)
+        final MaterialStyledDialog dialogHeader_2 = new MaterialStyledDialog.Builder(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_comment_alt).color(Color.WHITE))
                 .withIconAnimation(false)
                 .setDescription("What can we improve? Your feedback is always welcome.")
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        final MaterialStyledDialog dialogHeader_3 = new MaterialStyledDialog(context)
+        final MaterialStyledDialog dialogHeader_3 = new MaterialStyledDialog.Builder(context)
                 .setHeaderDrawable(R.drawable.header)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_github).color(Color.WHITE))
                 .withDialogAnimation(true)
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        final MaterialStyledDialog dialogHeader_4 = new MaterialStyledDialog(context)
+        final MaterialStyledDialog dialogHeader_4 = new MaterialStyledDialog.Builder(context)
                 .setHeaderDrawable(R.drawable.header_2)
                 .setTitle("Sweet!")
                 .setDescription("Check out my others apps with Material Design available on Google Play. Hope you find them interesting!")
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        final MaterialStyledDialog dialogHeader_5 = new MaterialStyledDialog(context)
+        final MaterialStyledDialog dialogHeader_5 = new MaterialStyledDialog.Builder(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_comment_alt).color(Color.WHITE))
                 .withDialogAnimation(true)
                 .setDescription("What can we improve? Your feedback is always welcome.")
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        final MaterialStyledDialog dialogHeader_6 = new MaterialStyledDialog(context)
+        final MaterialStyledDialog dialogHeader_6 = new MaterialStyledDialog.Builder(context)
                 .setStyle(Style.HEADER_WITH_TITLE)
                 .withDialogAnimation(true)
                 .setTitle("Awesome!")
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
 
-        final MaterialStyledDialog dialogHeader_7 = new MaterialStyledDialog(context)
+        final MaterialStyledDialog dialogHeader_7 = new MaterialStyledDialog.Builder(context)
                 .setStyle(Style.HEADER_WITH_TITLE)
                 .setHeaderDrawable(R.drawable.header)
                 .withDialogAnimation(true)
