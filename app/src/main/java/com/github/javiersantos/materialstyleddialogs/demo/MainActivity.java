@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Button dismissButton = (Button)customView.findViewById(R.id.custom_button);
 
         // Build some dialogs for the sample app
-        final MaterialStyledDialog dialogHeader_1 = new MaterialStyledDialog.Builder(context)
+        final MaterialStyledDialog.Builder dialogHeader_1 = new MaterialStyledDialog.Builder(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_google_play).color(Color.WHITE))
                 .withDialogAnimation(true)
                 .setTitle("Awesome!")
@@ -54,10 +54,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
                     }
                 })
-                .setNegativeText("Later")
-                .build();
+                .setNegativeText("Later");
 
-        final MaterialStyledDialog dialogHeader_2 = new MaterialStyledDialog.Builder(context)
+        final MaterialStyledDialog.Builder dialogHeader_2 = new MaterialStyledDialog.Builder(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_comment_alt).color(Color.WHITE))
                 .withIconAnimation(false)
                 .setDescription("What can we improve? Your feedback is always welcome.")
@@ -69,10 +68,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos/MaterialStyledDialogs/issues")));
                     }
                 })
-                .setNegativeText("Not now")
-                .build();
+                .setNegativeText("Not now");
 
-        final MaterialStyledDialog dialogHeader_3 = new MaterialStyledDialog.Builder(context)
+        final MaterialStyledDialog.Builder dialogHeader_3 = new MaterialStyledDialog.Builder(context)
                 .setHeaderDrawable(R.drawable.header)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_github).color(Color.WHITE))
                 .withDialogAnimation(true)
@@ -85,10 +83,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos")));
                     }
                 })
-                .setNegativeText("Not now")
-                .build();
+                .setNegativeText("Not now");
 
-        final MaterialStyledDialog dialogHeader_4 = new MaterialStyledDialog.Builder(context)
+        final MaterialStyledDialog.Builder dialogHeader_4 = new MaterialStyledDialog.Builder(context)
                 .setHeaderDrawable(R.drawable.header_2)
                 .setTitle("Sweet!")
                 .setDescription("Check out my others apps with Material Design available on Google Play. Hope you find them interesting!")
@@ -99,8 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=9205902632927830308")));
                     }
                 })
-                .setNegativeText("Not now")
-                .build();
+                .setNegativeText("Not now");
 
         final MaterialStyledDialog dialogHeader_5 = new MaterialStyledDialog.Builder(context)
                 .setIcon(new IconicsDrawable(context).icon(MaterialDesignIconic.Icon.gmi_comment_alt).color(Color.WHITE))
@@ -114,10 +110,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos/MaterialStyledDialogs/issues")));
                     }
-                })
-                .build();
+                }).build();
 
-        final MaterialStyledDialog dialogHeader_6 = new MaterialStyledDialog.Builder(context)
+        final MaterialStyledDialog.Builder dialogHeader_6 = new MaterialStyledDialog.Builder(context)
                 .setStyle(Style.HEADER_WITH_TITLE)
                 .withDialogAnimation(true)
                 .setTitle("Awesome!")
@@ -130,10 +125,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
                     }
                 })
-                .setNegativeText("Later")
-                .build();
+                .setNegativeText("Later");
 
-        final MaterialStyledDialog dialogHeader_7 = new MaterialStyledDialog.Builder(context)
+        final MaterialStyledDialog.Builder dialogHeader_7 = new MaterialStyledDialog.Builder(context)
                 .setStyle(Style.HEADER_WITH_TITLE)
                 .setHeaderDrawable(R.drawable.header)
                 .withDialogAnimation(true)
@@ -147,8 +141,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos")));
                     }
                 })
-                .setNegativeText("Not now")
-                .build();
+                .setNegativeText("Not now");
 
         // Init the card views
         CardView dialogHeaderView_1 = (CardView) findViewById(R.id.dialog_1);
