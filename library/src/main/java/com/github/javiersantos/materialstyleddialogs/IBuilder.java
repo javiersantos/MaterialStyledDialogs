@@ -49,15 +49,6 @@ public interface IBuilder {
      *
      * @param withAnimation true to enable animation, false otherwise
      * @return this
-     * @deprecated use {@link #withIconAnimation(Boolean)} instead
-     */
-    MaterialStyledDialog.Builder withAnimation(Boolean withAnimation);
-
-    /**
-     * Set if the header icon will be displayed with an initial animation. Default: true.
-     *
-     * @param withAnimation true to enable animation, false otherwise
-     * @return this
      */
     MaterialStyledDialog.Builder withIconAnimation(Boolean withAnimation);
 

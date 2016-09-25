@@ -252,12 +252,6 @@ public class MaterialStyledDialog {
         }
 
         @Override
-        public Builder withAnimation(Boolean withAnimation) {
-            this.isIconAnimation = withAnimation;
-            return this;
-        }
-
-        @Override
         public Builder withIconAnimation(Boolean withAnimation) {
             this.isIconAnimation = withAnimation;
             return this;
