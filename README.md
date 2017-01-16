@@ -235,6 +235,13 @@ Feel free to send me new projects by submitting an [issue](https://github.com/ja
                     alt="QualityGate" height="120">
             </a>
         </td>
+	<td>
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=es.usc.citius.servando.calendula">
+                <img src="https://lh6.ggpht.com/yX80u4AqdSxgsJZSoNWlFuDY5Z9BFH_PduEs3w-6uZTXK2M0mNC_3YfgR0VY8CunZoUx=w300-rw"
+                    title="Calendula"
+                    alt="Calendula" height="120">
+            </a>
+        </td>
     </tr>
 </table>
 
