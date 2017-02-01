@@ -13,6 +13,9 @@
 ![MaterialStyledDialogs](https://raw.githubusercontent.com/javiersantos/MaterialStyledDialogs/master/Screenshots/banner.png)
 
 ## Sample Project
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/aa51e10377194abebe3d0e115c6b0936)](https://www.codacy.com/app/javiersantos/MaterialStyledDialogs?utm_source=github.com&utm_medium=referral&utm_content=javiersantos/MaterialStyledDialogs&utm_campaign=badger)
+
 You can download the latest sample APK from Google Play:
 
 <a target="_blank" href="https://play.google.com/store/apps/details?id=com.github.javiersantos.materialstyleddialogs.demo"><img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="60"></a>
