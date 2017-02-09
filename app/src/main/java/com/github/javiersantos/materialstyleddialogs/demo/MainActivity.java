@@ -21,6 +21,8 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
@@ -234,11 +236,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                new LibsBuilder()
+                        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                        .withActivityTitle(getResources().getString(R.string.action_about))
+                        .withAboutIconShown(true)
+                        .withAboutDescription(getResources().getString(R.string.app_description))
+                        .withAboutVersionShown(true)
+                        .withAboutAppName(getResources().getString(R.string.app_name))
+                        .withAutoDetect(true)
+                        .withLicenseShown(true)
+                        .start(this);
+                return true;
 
-        if (id == R.id.action_about) {
-            startActivity(new Intent(this, AboutActivity.class));
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
