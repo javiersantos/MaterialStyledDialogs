@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.internal.MDRootLayout;
 
-public class DialogBase extends Dialog implements DialogInterface.OnShowListener {
+class DialogBase extends Dialog implements DialogInterface.OnShowListener {
 
     protected MDRootLayout view;
     private OnShowListener showListener;
