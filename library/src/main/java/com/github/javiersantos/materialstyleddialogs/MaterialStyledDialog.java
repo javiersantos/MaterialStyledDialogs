@@ -26,7 +26,7 @@ import com.afollestad.materialdialogs.Theme;
 import com.github.javiersantos.materialstyleddialogs.enums.Duration;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
 
-public class MaterialStyledDialog {
+public class MaterialStyledDialog extends DialogBase {
     protected final Builder mBuilder;
 
     public final Builder getBuilder() {
@@ -34,6 +34,7 @@ public class MaterialStyledDialog {
     }
 
     protected MaterialStyledDialog(Builder builder) {
+        super(builder.context, R.style.MD_Dark);
         mBuilder = builder;
         mBuilder.dialog = initMaterialStyledDialog(builder);
     }
