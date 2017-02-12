@@ -242,6 +242,13 @@ Feel free to send me new projects by submitting an [issue](https://github.com/ja
                     alt="Calendula" height="120">
             </a>
         </td>
+	<td>
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=vladyslavpohrebniakov.justtictactoe">
+                <img src="https://lh3.googleusercontent.com/BKIeH5z4jOJwgFYqLHVCbe0yJmOQEg5Xphs01dJ86MqS8SZK7YvSc7H1XbaZG5Fqzt8=w300-rw"
+                    title="Just tictactoe"
+                    alt="Just tictactoe" height="120">
+            </a>
+        </td>
     </tr>
 </table>
 
