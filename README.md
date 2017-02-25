@@ -249,6 +249,13 @@ Feel free to send me new projects by submitting an [issue](https://github.com/ja
                     alt="Just tictactoe" height="120">
             </a>
         </td>
+	<td>
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.tomer.alwayson">
+                <img src="https://lh3.googleusercontent.com/isj-hzZSIF9Cvyroa9adJOLw_QKR6v45IqzXa7LkkNcAakUa71u3ygS_ps5feasnng=w300-rw"
+                    title="Always On AMOLED"
+                    alt="Always On AMOLED" height="120">
+            </a>
+        </td>
     </tr>
 </table>
 
