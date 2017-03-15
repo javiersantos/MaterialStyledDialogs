@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.AppCompatImageView;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -119,8 +120,8 @@ public class MaterialStyledDialog extends DialogBase {
 
         // Init Views
         RelativeLayout dialogHeaderColor = (RelativeLayout) contentView.findViewById(R.id.md_styled_header_color);
-        ImageView dialogHeader = (ImageView) contentView.findViewById(R.id.md_styled_header);
-        ImageView dialogPic = (ImageView) contentView.findViewById(R.id.md_styled_header_pic);
+        AppCompatImageView dialogHeader = (AppCompatImageView) contentView.findViewById(R.id.md_styled_header);
+        AppCompatImageView dialogPic = (AppCompatImageView) contentView.findViewById(R.id.md_styled_header_pic);
         TextView dialogTitle = (TextView) contentView.findViewById(R.id.md_styled_dialog_title);
         TextView dialogDescription = (TextView) contentView.findViewById(R.id.md_styled_dialog_description);
         FrameLayout dialogCustomViewGroup = (FrameLayout) contentView.findViewById(R.id.md_styled_dialog_custom_view);
@@ -204,7 +205,7 @@ public class MaterialStyledDialog extends DialogBase {
         protected CharSequence title, description; // setTitle(), setDescription()
         protected View customView; // setCustomView()
         protected int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
-        protected ImageView.ScaleType headerScaleType;
+        protected AppCompatImageView.ScaleType headerScaleType;
 
         // .setPositive(), setNegative() and setNeutral()
         protected CharSequence positive, negative, neutral;
@@ -223,7 +224,7 @@ public class MaterialStyledDialog extends DialogBase {
             this.isScrollable = false;
             this.maxLines = 5;
             this.isAutoDismiss = true;
-            this.headerScaleType = ImageView.ScaleType.CENTER_CROP;
+            this.headerScaleType = AppCompatImageView.ScaleType.CENTER_CROP;
         }
 
         @Override
@@ -422,7 +423,7 @@ public class MaterialStyledDialog extends DialogBase {
         }
 
         @Override
-        public Builder setHeaderScaleType(ImageView.ScaleType scaleType) {
+        public Builder setHeaderScaleType(AppCompatImageView.ScaleType scaleType) {
             this.headerScaleType = scaleType;
             return this;
         }

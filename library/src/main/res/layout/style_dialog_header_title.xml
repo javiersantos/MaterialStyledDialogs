@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/md_styled_dialog_header">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/md_styled_header"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
