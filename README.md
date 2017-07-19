@@ -223,7 +223,7 @@ Feel free to send me new projects by submitting an [issue](https://github.com/ja
     <tr>
         <td>
             <a target="_blank" href="https://play.google.com/store/apps/details?id=com.materiup.following">
-                <img src="http://www.materiup.com/following/images/logo.png"
+                <img src="http://www.materiup.com/following/img/logo.png"
                     title="Following: game for Twitter"
                     alt="Following: game for Twitter" height="120">
             </a>
@@ -256,6 +256,11 @@ Feel free to send me new projects by submitting an [issue](https://github.com/ja
                     alt="WikiGame - A Wikipedia Game" height="120">
             </a>
         </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
 	<td>
             <a target="_blank" href="https://play.google.com/store/apps/details?id=com.tomer.alwayson">
                 <img src="https://lh3.googleusercontent.com/isj-hzZSIF9Cvyroa9adJOLw_QKR6v45IqzXa7LkkNcAakUa71u3ygS_ps5feasnng=w300-rw"
