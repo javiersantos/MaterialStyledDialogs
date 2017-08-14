@@ -20,7 +20,8 @@
         <TextView
             style="@style/MaterialStyledDialogs_TitleHeader"
             android:id="@+id/md_styled_dialog_title"
-            android:layout_width="wrap_content"
+            android:gravity="start"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
