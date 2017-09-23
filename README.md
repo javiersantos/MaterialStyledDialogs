@@ -23,7 +23,7 @@ Add the repository to your project **build.gradle**:
 repositories {
     jcenter()
     maven {
-	    url "https://jitpack.io"
+        url "https://jitpack.io"
     }
 }
 ```
