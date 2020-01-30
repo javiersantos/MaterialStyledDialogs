@@ -215,6 +215,13 @@ new MaterialStyledDialog.Builder(this)
 	.show();
 ```
 
+
+## Third Party Bindings
+
+### React Native
+You may now use this library with [React Native](https://github.com/facebook/react-native) via the module [here](https://github.com/prscX/react-native-styled-dialogs)
+
+
 ## License
 	Copyright 2016-2018 Javier Santos
 
