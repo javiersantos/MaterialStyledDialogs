@@ -11,25 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/md_styled_dialog_header">
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/md_styled_header"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/md_styled_header_pic"
             android:layout_width="@dimen/md_styled_pic_size"
             android:layout_height="@dimen/md_styled_pic_size"
             android:layout_centerInParent="true" />
 
-    </RelativeLayout>
+        <TextView
+                android:id="@+id/md_styled_dialog_title"
+                style="@style/MaterialStyledDialogs_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/md_styled_header_pic"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="4dp" />
 
-    <TextView
-        style="@style/MaterialStyledDialogs_Title"
-        android:id="@+id/md_styled_dialog_title"
-        android:gravity="start"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    </RelativeLayout>
 
     <TextView
         style="@style/MaterialStyledDialogs_Description"
