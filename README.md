@@ -30,7 +30,7 @@ repositories {
 And add the library to your module **build.gradle**:
 ```Gradle
 dependencies {
-    compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:2.2'
 }
 ```
 
@@ -132,12 +132,14 @@ new MaterialStyledDialog.Builder(this)
 
 ### Adding icon and dialog animations
 An animation to the icon will be displayed when the dialog is opened. `true` by default.
+You can also add a custom animation using `.setIconAnimation(R.anim.your_animation)`. A zoom in-out animation will be used by default.
 
 ```Java
 new MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.withIconAnimation(true)
+	.setIconAnimation(R.anim.your_animation)
 	.show();
 ```
 
