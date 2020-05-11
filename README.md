@@ -5,7 +5,6 @@
   <a target="_blank" href="https://android-arsenal.com/api?level=11"><img src="https://img.shields.io/badge/API-11%2B-orange.svg"></a>
   <a target="_blank" href="https://travis-ci.org/javiersantos/MaterialStyledDialogs"><img src="https://travis-ci.org/javiersantos/MaterialStyledDialogs.svg?branch=master"></a>
   <a target="_blank" href="http://android-arsenal.com/details/1/3136"><img src="https://img.shields.io/badge/Android%20Arsenal-MaterialStyledDialogs-blue.svg"></a>
-  <a target="_blank" href="https://www.paypal.me/javiersantos" title="Donate using PayPal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" /></a>
 </p>
 
 <p align="center">Android Library that shows a beautiful and customizable Material designed dialog with header. Based on <a target="_blank" href="https://github.com/afollestad/material-dialogs">material-dialogs</a> and inspired by this <a target="_blank" href="https://dribbble.com/shots/2439453-Sprocket-AND-1-3-3-OS-Consistent-Dialogs">dribbble</a>.</p>
@@ -19,19 +18,19 @@ You can download the latest sample APK from Google Play:
 
 ## How to include
 Add the repository to your project **build.gradle**:
-```Javascript
+```Gradle
 repositories {
-	jcenter()
-	maven {
-		url "https://jitpack.io"
-	}
+    jcenter()
+    maven {
+        url "https://jitpack.io"
+    }
 }
 ```
 
 And add the library to your module **build.gradle**:
-```Javascript
+```Gradle
 dependencies {
-	compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
 }
 ```
 
@@ -216,63 +215,8 @@ new MaterialStyledDialog.Builder(this)
 	.show();
 ```
 
-## Apps already using this library
-Feel free to send me new projects by submitting an [issue](https://github.com/javiersantos/MaterialStyledDialogs/issues) or a [pull request](https://github.com/javiersantos/MaterialStyledDialogs/pulls).
-
-<table>
-    <tr>
-        <td>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.materiup.following">
-                <img src="http://www.materiup.com/following/img/logo.png"
-                    title="Following: game for Twitter"
-                    alt="Following: game for Twitter" height="120">
-            </a>
-        </td>
-       <td>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.frontendart.qualitygate.android">
-                <img src="https://lh3.googleusercontent.com/dvIZu7L-bSNdZ3eJ5exx-EuPN_5Pen15SkXhuNwCis8xRvq7fqWoTHgQMZFhUt_69es"
-                    title="QualityGate"
-                    alt="QualityGate" height="120">
-            </a>
-        </td>
-	<td>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=es.usc.citius.servando.calendula">
-                <img src="https://lh6.ggpht.com/yX80u4AqdSxgsJZSoNWlFuDY5Z9BFH_PduEs3w-6uZTXK2M0mNC_3YfgR0VY8CunZoUx=w300-rw"
-                    title="Calendula"
-                    alt="Calendula" height="120">
-            </a>
-        </td>
-	<td>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=vladyslavpohrebniakov.justtictactoe">
-                <img src="https://lh3.googleusercontent.com/BKIeH5z4jOJwgFYqLHVCbe0yJmOQEg5Xphs01dJ86MqS8SZK7YvSc7H1XbaZG5Fqzt8=w300-rw"
-                    title="Just tictactoe"
-                    alt="Just tictactoe" height="120">
-            </a>
-        </td>
-	<td>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.hadadfranco.wikygame">
-                <img src="https://lh3.googleusercontent.com/qc6RW6WMuXmC2rGj8wVxPTt8GBa0cE3suJesmL1MkGU8a6igGg_9Gx49oWaXCoW1tGHg=w300-rw"
-                    title="WikiGame - A Wikipedia Game"
-                    alt="WikiGame - A Wikipedia Game" height="120">
-            </a>
-        </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-	<td>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.tomer.alwayson">
-                <img src="https://lh3.googleusercontent.com/isj-hzZSIF9Cvyroa9adJOLw_QKR6v45IqzXa7LkkNcAakUa71u3ygS_ps5feasnng=w300-rw"
-                    title="Always On AMOLED"
-                    alt="Always On AMOLED" height="120">
-            </a>
-        </td>
-    </tr>
-</table>
-
 ## License
-	Copyright 2016 Javier Santos
+	Copyright 2016-2018 Javier Santos
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
