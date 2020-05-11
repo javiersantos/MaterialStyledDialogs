@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.AnimRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -178,7 +179,7 @@ public class MaterialStyledDialog extends DialogBase {
         // Set icon animation
         if (builder.isIconAnimation) {
             if (builder.style != Style.HEADER_WITH_TITLE) {
-                UtilsAnimation.zoomInAndOutAnimation(builder.context, dialogPic);
+                UtilsAnimation.startAnimation(builder.context, dialogPic, builder.iconAnimation);
             }
         }
 
@@ -198,6 +199,7 @@ public class MaterialStyledDialog extends DialogBase {
 
         protected Style style; // setStyle()
         protected Duration duration; // withDialogAnimation()
+        protected @AnimRes int iconAnimation;
         protected boolean isIconAnimation, isDialogAnimation, isDialogDivider, isCancelable, isScrollable, isDarkerOverlay, isAutoDismiss; // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable(), withDarkerOverlay(), autoDismiss()
         protected Drawable headerDrawable, iconDrawable; // setHeaderDrawable(), setIconDrawable()
         protected Integer primaryColor, maxLines; // setHeaderColor(), setScrollable()
@@ -214,6 +216,7 @@ public class MaterialStyledDialog extends DialogBase {
             this.context = context;
             this.style = Style.HEADER_WITH_ICON;
             this.isIconAnimation = true;
+            this.iconAnimation = R.anim.md_styled_zoom_in_out;
             this.isDialogAnimation = false;
             this.isDialogDivider = false;
             this.isDarkerOverlay = false;
@@ -292,6 +295,12 @@ public class MaterialStyledDialog extends DialogBase {
         @Override
         public Builder setIcon(@DrawableRes Integer iconRes) {
             this.iconDrawable = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
+            return this;
+        }
+
+        @Override
+        public Builder setIconAnimation(@AnimRes int animResource) {
+            this.iconAnimation = animResource;
             return this;
         }
 

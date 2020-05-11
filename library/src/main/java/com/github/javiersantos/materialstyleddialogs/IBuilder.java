@@ -1,6 +1,7 @@
 package com.github.javiersantos.materialstyleddialogs;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.AnimRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -100,6 +101,14 @@ interface IBuilder {
      * @return this
      */
     MaterialStyledDialog.Builder setIcon(@DrawableRes Integer iconRes);
+
+    /**
+     * Set animation for the dialog icon.
+     *
+     * @param animResource custom animation
+     * @return this
+     */
+    MaterialStyledDialog.Builder setIconAnimation(@AnimRes int animResource);
 
     /**
      * Set a title for the dialog
