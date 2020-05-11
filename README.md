@@ -131,7 +131,7 @@ new MaterialStyledDialog.Builder(this)
 ```
 
 ### Adding icon and dialog animations
-An animation to the icon will be displayed when the dialog is opened. `true` by default.
+An animation to the icon will be displayed when the dialog is opened (`true` by default).
 You can also add a custom animation using `.setIconAnimation(R.anim.your_animation)`. A zoom in-out animation will be used by default.
 
 ```Java
