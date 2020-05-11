@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView.ScaleType
 import androidx.annotation.*
+import com.afollestad.materialdialogs.DialogCallback
 import com.github.javiersantos.materialstyleddialogs.enums.Duration
 import com.github.javiersantos.materialstyleddialogs.enums.Style
 
@@ -188,7 +189,7 @@ internal interface IBuilder {
     )
     fun setPositive(
         text: String?,
-        callback: MaterialDialog.SingleButtonCallback?
+        callback: DialogCallback?
     ): MaterialStyledDialog.Builder?
 
     /**
@@ -213,7 +214,7 @@ internal interface IBuilder {
      * @param callback     for the button
      * @return this
      */
-    fun onPositive(callback: MaterialDialog.SingleButtonCallback): MaterialStyledDialog.Builder?
+    fun onPositive(callback: DialogCallback): MaterialStyledDialog.Builder?
 
     /**
      * Set a negative button for the dialog
@@ -228,7 +229,7 @@ internal interface IBuilder {
     )
     fun setNegative(
         text: String?,
-        callback: MaterialDialog.SingleButtonCallback?
+        callback: DialogCallback?
     ): MaterialStyledDialog.Builder?
 
     /**
@@ -253,7 +254,7 @@ internal interface IBuilder {
      * @param callback     for the button
      * @return this
      */
-    fun onNegative(callback: MaterialDialog.SingleButtonCallback): MaterialStyledDialog.Builder?
+    fun onNegative(callback: DialogCallback): MaterialStyledDialog.Builder?
 
     /**
      * Set a neutral button for the dialog
@@ -268,7 +269,7 @@ internal interface IBuilder {
     )
     fun setNeutral(
         text: String?,
-        callback: MaterialDialog.SingleButtonCallback?
+        callback: DialogCallback?
     ): MaterialStyledDialog.Builder?
 
     /**
@@ -293,7 +294,7 @@ internal interface IBuilder {
      * @param callback     for the button
      * @return this
      */
-    fun onNeutral(callback: MaterialDialog.SingleButtonCallback): MaterialStyledDialog.Builder?
+    fun onNeutral(callback: DialogCallback): MaterialStyledDialog.Builder?
 
     /**
      * Set the scale type for the header ImageView.
@@ -325,10 +326,7 @@ internal interface IBuilder {
      * @param scrollable true to enable isScrollable description, false otherwise
      * @return this
      */
-    fun setScrollable(
-        scrollable: Boolean?,
-        maxLines: Int?
-    ): MaterialStyledDialog.Builder?
+    fun setScrollable(scrollable: Boolean?, maxLines: Int?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the dialog will be dismissed when a button is pressed. Default: true.

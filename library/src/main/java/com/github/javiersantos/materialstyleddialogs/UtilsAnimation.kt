@@ -6,13 +6,7 @@ import android.widget.ImageView
 import androidx.annotation.AnimRes
 
 internal object UtilsAnimation {
-    fun startAnimation(
-        context: Context?,
-        image: ImageView,
-        @AnimRes anim: Int
-    ) {
-        val animation =
-            AnimationUtils.loadAnimation(context, anim)
-        image.startAnimation(animation)
-    }
+    @JvmStatic
+    fun startAnimation(context: Context?, image: ImageView, @AnimRes anim: Int) =
+        image.startAnimation(AnimationUtils.loadAnimation(context, anim))
 }

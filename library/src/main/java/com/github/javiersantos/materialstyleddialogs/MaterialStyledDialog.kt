@@ -7,7 +7,6 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView.ScaleType
@@ -16,8 +15,9 @@ import android.widget.TextView
 import androidx.annotation.*
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
+import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.Theme
+import com.afollestad.materialdialogs.customview.customView
 import com.github.javiersantos.materialstyleddialogs.UtilsAnimation.startAnimation
 import com.github.javiersantos.materialstyleddialogs.UtilsLibrary.dpToPixels
 import com.github.javiersantos.materialstyleddialogs.UtilsLibrary.getColor
@@ -25,96 +25,79 @@ import com.github.javiersantos.materialstyleddialogs.UtilsLibrary.getPrimaryColo
 import com.github.javiersantos.materialstyleddialogs.enums.Duration
 import com.github.javiersantos.materialstyleddialogs.enums.Style
 
-class MaterialStyledDialog protected constructor(builder: Builder) :
-    DialogBase(builder.context, R.style.MD_Dark) {
-    val builder: Builder?
+class MaterialStyledDialog(
+    private val builder: Builder
+) : DialogBase(builder.context, R.style.MD_Dark) {
 
     @UiThread
     override fun show() {
-        if (builder != null && builder.dialog != null) builder.dialog!!.show()
+        builder.dialog?.show()
     }
 
     @UiThread
     override fun dismiss() {
-        if (builder != null && builder.dialog != null) builder.dialog!!.dismiss()
+        builder.dialog?.dismiss()
     }
 
     @UiThread
     private fun initMaterialStyledDialog(builder: Builder): MaterialDialog {
-        val dialogBuilder: MaterialDialog.Builder = Builder(builder.context).theme(Theme.LIGHT)
+        val dialog = MaterialDialog(builder.context)
 
         // Set cancelable
-        dialogBuilder.cancelable(builder.isCancelable)
+        dialog.cancelable(builder.isCancelable)
 
         // Set style
-        dialogBuilder.customView(initStyle(builder), false)
+        dialog.customView(view = initStyle(builder), scrollable = false, noVerticalPadding = true)
+
 
         // Set positive button
-        if (builder.positive != null && builder.positive!!.length != 0) dialogBuilder.positiveText(
-            builder.positive
-        )
-        if (builder.positiveCallback != null) dialogBuilder.onPositive(builder.positiveCallback)
-
+        if (builder.positive != null && builder.positive!!.isNotEmpty())
+            dialog.positiveButton(text = builder.positive, click = builder.positiveCallback)
         // set negative button
-        if (builder.negative != null && builder.negative!!.length != 0) dialogBuilder.negativeText(
-            builder.negative
-        )
-        if (builder.negativeCallback != null) dialogBuilder.onNegative(builder.negativeCallback)
+        if (builder.negative != null && builder.negative!!.isNotEmpty())
+            dialog.negativeButton(text = builder.negative, click = builder.negativeCallback)
 
         // Set neutral button
-        if (builder.neutral != null && builder.neutral!!.length != 0) dialogBuilder.neutralText(
-            builder.neutral
-        )
-        if (builder.neutralCallback != null) dialogBuilder.onNeutral(builder.neutralCallback)
+        if (builder.neutral != null && builder.neutral!!.isNotEmpty())
+            dialog.neutralButton(text = builder.neutral, click = builder.neutralCallback)
 
         // Set auto dismiss when touching the buttons
-        dialogBuilder.autoDismiss(builder.isAutoDismiss)
-
-        // Build the dialog with the previous configuration
-        val materialDialog: MaterialDialog = dialogBuilder.build()
+        if (!builder.isAutoDismiss) dialog.noAutoDismiss()
 
         // Set dialog animation and animation duration
         if (builder.isDialogAnimation) {
-            if (builder.duration === Duration.NORMAL) {
-                materialDialog.window!!.attributes.windowAnimations =
-                    R.style.MaterialStyledDialogs_DialogAnimationNormal
-            } else if (builder.duration === Duration.FAST) {
-                materialDialog.window!!.attributes.windowAnimations =
-                    R.style.MaterialStyledDialogs_DialogAnimationFast
-            } else if (builder.duration === Duration.SLOW) {
-                materialDialog.window!!.attributes.windowAnimations =
-                    R.style.MaterialStyledDialogs_DialogAnimationSlow
+            dialog.window!!.attributes.windowAnimations = when(builder.duration) {
+                Duration.FAST -> R.style.MaterialStyledDialogs_DialogAnimationFast
+                Duration.SLOW -> R.style.MaterialStyledDialogs_DialogAnimationSlow
+                else -> R.style.MaterialStyledDialogs_DialogAnimationNormal
             }
         }
-        return materialDialog
+        return dialog
     }
 
     @UiThread
     @TargetApi(16)
     private fun initStyle(builder: Builder): View {
-        val inflater = LayoutInflater.from(builder.context)
-        val contentView: View
-        contentView = when (builder.style) {
-            Style.HEADER_WITH_ICON -> inflater.inflate(R.layout.style_dialog_header_icon, null)
-            Style.HEADER_WITH_TITLE -> inflater.inflate(R.layout.style_dialog_header_title, null)
-            else -> inflater.inflate(R.layout.style_dialog_header_icon, null)
+        val contentView = when (builder.style) {
+            Style.HEADER_WITH_ICON -> layoutInflater.inflate(R.layout.style_dialog_header_icon, null)
+            else -> layoutInflater.inflate(R.layout.style_dialog_header_title, null)
         }
 
         // Init Views
         val dialogHeaderColor =
-            contentView.findViewById<View>(R.id.md_styled_header_color) as RelativeLayout
+            contentView.findViewById(R.id.mdStyledHeaderColor) as RelativeLayout
         val dialogHeader =
-            contentView.findViewById<View>(R.id.md_styled_header) as AppCompatImageView
+            contentView.findViewById(R.id.mdStyledHeader) as AppCompatImageView
         val dialogPic =
-            contentView.findViewById<View>(R.id.md_styled_header_pic) as AppCompatImageView
+            contentView.findViewById(R.id.mdStyledHeaderPic) as AppCompatImageView?
         val dialogTitle =
-            contentView.findViewById<View>(R.id.md_styled_dialog_title) as TextView
+            contentView.findViewById(R.id.mdStyledDialogTitle) as TextView
         val dialogDescription =
-            contentView.findViewById<View>(R.id.md_styled_dialog_description) as TextView
+            contentView.findViewById(R.id.mdStyledDialogDescription) as TextView
         val dialogCustomViewGroup =
-            contentView.findViewById<View>(R.id.md_styled_dialog_custom_view) as FrameLayout
+            contentView.findViewById(R.id.mdStyledDialogCustomView) as FrameLayout
         val dialogDivider =
-            contentView.findViewById<View>(R.id.md_styled_dialog_divider)
+            contentView.findViewById(R.id.mdStyledDialogDivider) as View
 
         // Set header color or drawable
         if (builder.headerDrawable != null) {
@@ -144,24 +127,21 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
         // Set header icon
         if (builder.iconDrawable != null) {
             if (builder.style === Style.HEADER_WITH_TITLE) {
-                Log.e(
-                    "MaterialStyledDialog",
-                    "You can't set an icon to the HEADER_WITH_TITLE style."
-                )
+                Log.e("MaterialStyledDialog", "You can't set an icon to the HEADER_WITH_TITLE style.")
             } else {
-                dialogPic.setImageDrawable(builder.iconDrawable)
+                dialogPic?.setImageDrawable(builder.iconDrawable)
             }
         }
 
         // Set dialog title
-        if (builder.title != null && builder.title!!.length != 0) {
+        if (builder.title != null && builder.title!!.isNotEmpty()) {
             dialogTitle.text = builder.title
         } else {
             dialogTitle.visibility = View.GONE
         }
 
         // Set dialog description
-        if (builder.description != null && builder.description!!.length != 0) {
+        if (builder.description != null && builder.description!!.isNotEmpty()) {
             dialogDescription.text = builder.description
 
             // Set scrollable
@@ -178,26 +158,20 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
 
         // Set icon animation
         if (builder.isIconAnimation) {
-            if (builder.style !== Style.HEADER_WITH_TITLE) {
-                startAnimation(builder.context, dialogPic, builder.iconAnimation)
-            }
+            if (builder.style !== Style.HEADER_WITH_TITLE)
+                startAnimation(builder.context, dialogPic!!, builder.iconAnimation)
         }
 
         // Show dialog divider if enabled
-        if (builder.isDialogDivider) {
-            dialogDivider.visibility = View.VISIBLE
-        }
+        if (builder.isDialogDivider) dialogDivider.visibility = View.VISIBLE
         return contentView
     }
 
     class Builder(var context: Context) : IBuilder {
 
-        // build() and show()
         var dialog: MaterialDialog? = null
-        var style // setStyle()
-                : Style?
-        var duration // withDialogAnimation()
-                : Duration?
+        var style: Style?
+        var duration: Duration?
 
         @AnimRes
         var iconAnimation: Int
@@ -207,33 +181,27 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
         var isCancelable: Boolean
         var isScrollable: Boolean
         var isDarkerOverlay: Boolean
-        var isAutoDismiss // withIconAnimation(), withDialogAnimation(), withDivider(), setCancelable(), setScrollable(), withDarkerOverlay(), autoDismiss()
-                : Boolean
+        var isAutoDismiss: Boolean
         var headerDrawable: Drawable? = null
-        var iconDrawable // setHeaderDrawable(), setIconDrawable()
-                : Drawable? = null
+        var iconDrawable: Drawable? = null
         var primaryColor: Int
-        var maxLines // setHeaderColor(), setScrollable()
-                : Int?
+        var maxLines: Int?
         var title: CharSequence? = null
-        var description // setTitle(), setDescription()
-                : CharSequence? = null
-        var customView // setCustomView()
-                : View? = null
+        var description: CharSequence? = null
+        var customView: View? = null
         var customViewPaddingLeft = 0
         var customViewPaddingTop = 0
         var customViewPaddingRight = 0
         var customViewPaddingBottom = 0
         var headerScaleType: ScaleType?
-
-        // .setPositive(), setNegative() and setNeutral()
         var positive: CharSequence? = null
         var negative: CharSequence? = null
         var neutral: CharSequence? = null
-        var positiveCallback: MaterialDialog.SingleButtonCallback? = null
-        var negativeCallback: MaterialDialog.SingleButtonCallback? = null
-        var neutralCallback: MaterialDialog.SingleButtonCallback? = null
-        override fun setCustomView(customView: View?): Builder? {
+        var positiveCallback: DialogCallback? = null
+        var negativeCallback: DialogCallback? = null
+        var neutralCallback: DialogCallback? = null
+
+        override fun setCustomView(customView: View?): Builder {
             this.customView = customView
             customViewPaddingLeft = 0
             customViewPaddingRight = 0
@@ -248,7 +216,7 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
             top: Int,
             right: Int,
             bottom: Int
-        ): Builder? {
+        ): Builder {
             this.customView = customView
             customViewPaddingLeft = dpToPixels(context, left)
             customViewPaddingRight = dpToPixels(context, right)
@@ -257,17 +225,17 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
             return this
         }
 
-        override fun setStyle(style: Style?): Builder? {
+        override fun setStyle(style: Style?): Builder {
             this.style = style
             return this
         }
 
-        override fun withIconAnimation(withAnimation: Boolean?): Builder? {
+        override fun withIconAnimation(withAnimation: Boolean?): Builder {
             isIconAnimation = withAnimation!!
             return this
         }
 
-        override fun withDialogAnimation(withAnimation: Boolean?): Builder? {
+        override fun withDialogAnimation(withAnimation: Boolean?): Builder {
             isDialogAnimation = withAnimation!!
             return this
         }
@@ -275,73 +243,73 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
         override fun withDialogAnimation(
             withAnimation: Boolean?,
             duration: Duration?
-        ): Builder? {
+        ): Builder {
             isDialogAnimation = withAnimation!!
             this.duration = duration
             return this
         }
 
-        override fun withDivider(withDivider: Boolean?): Builder? {
+        override fun withDivider(withDivider: Boolean?): Builder {
             isDialogDivider = withDivider!!
             return this
         }
 
-        override fun withDarkerOverlay(withDarkerOverlay: Boolean?): Builder? {
+        override fun withDarkerOverlay(withDarkerOverlay: Boolean?): Builder {
             isDarkerOverlay = withDarkerOverlay!!
             return this
         }
 
-        override fun setIcon(icon: Drawable): Builder? {
+        override fun setIcon(icon: Drawable): Builder {
             iconDrawable = icon
             return this
         }
 
-        override fun setIcon(@DrawableRes iconRes: Int?): Builder? {
+        override fun setIcon(@DrawableRes iconRes: Int?): Builder {
             iconDrawable = ResourcesCompat.getDrawable(context.resources, iconRes!!, null)
             return this
         }
 
-        override fun setIconAnimation(@AnimRes animResource: Int): Builder? {
+        override fun setIconAnimation(@AnimRes animResource: Int): Builder {
             iconAnimation = animResource
             return this
         }
 
-        override fun setTitle(@StringRes titleRes: Int): Builder? {
+        override fun setTitle(@StringRes titleRes: Int): Builder {
             setTitle(context.getString(titleRes))
             return this
         }
 
-        override fun setTitle(title: CharSequence): Builder? {
+        override fun setTitle(title: CharSequence): Builder {
             this.title = title
             return this
         }
 
-        override fun setDescription(@StringRes descriptionRes: Int): Builder? {
+        override fun setDescription(@StringRes descriptionRes: Int): Builder {
             setDescription(context.getString(descriptionRes))
             return this
         }
 
-        override fun setDescription(description: CharSequence): Builder? {
+        override fun setDescription(description: CharSequence): Builder {
             this.description = description
             return this
         }
 
-        override fun setHeaderColor(@ColorRes color: Int): Builder? {
+        override fun setHeaderColor(@ColorRes color: Int): Builder {
             primaryColor = getColor(context, color)
             return this
         }
 
-        override fun setHeaderColorInt(@ColorInt color: Int): Builder? {
+        override fun setHeaderColorInt(@ColorInt color: Int): Builder {
             primaryColor = color
             return this
         }
 
-        override fun setHeaderDrawable(drawable: Drawable): Builder? {
+        override fun setHeaderDrawable(drawable: Drawable): Builder {
             headerDrawable = drawable
             return this
         }
 
-        override fun setHeaderDrawable(@DrawableRes drawableRes: Int?): Builder? {
+        override fun setHeaderDrawable(@DrawableRes drawableRes: Int?): Builder {
             headerDrawable =
                 ResourcesCompat.getDrawable(context.resources, drawableRes!!, null)
             return this
@@ -350,24 +318,24 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
         @Deprecated("")
         override fun setPositive(
             text: String?,
-            callback: MaterialDialog.SingleButtonCallback?
-        ): Builder? {
+            callback: DialogCallback?
+        ): Builder {
             positive = text
             positiveCallback = callback
             return this
         }
 
-        override fun setPositiveText(@StringRes buttonTextRes: Int): Builder? {
+        override fun setPositiveText(@StringRes buttonTextRes: Int): Builder {
             setPositiveText(context.getString(buttonTextRes))
             return this
         }
 
-        override fun setPositiveText(buttonText: CharSequence): Builder? {
+        override fun setPositiveText(buttonText: CharSequence): Builder {
             positive = buttonText
             return this
         }
 
-        override fun onPositive(callback: MaterialDialog.SingleButtonCallback): Builder? {
+        override fun onPositive(callback: DialogCallback): Builder {
             positiveCallback = callback
             return this
         }
@@ -375,24 +343,24 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
         @Deprecated("")
         override fun setNegative(
             text: String?,
-            callback: MaterialDialog.SingleButtonCallback?
-        ): Builder? {
+            callback: DialogCallback?
+        ): Builder {
             negative = text
             negativeCallback = callback
             return this
         }
 
-        override fun setNegativeText(@StringRes buttonTextRes: Int): Builder? {
+        override fun setNegativeText(@StringRes buttonTextRes: Int): Builder {
             setNegativeText(context.getString(buttonTextRes))
             return this
         }
 
-        override fun setNegativeText(buttonText: CharSequence): Builder? {
+        override fun setNegativeText(buttonText: CharSequence): Builder {
             negative = buttonText
             return this
         }
 
-        override fun onNegative(callback: MaterialDialog.SingleButtonCallback): Builder? {
+        override fun onNegative(callback: DialogCallback): Builder {
             negativeCallback = callback
             return this
         }
@@ -400,39 +368,42 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
         @Deprecated("")
         override fun setNeutral(
             text: String?,
-            callback: MaterialDialog.SingleButtonCallback?
-        ): Builder? {
+            callback: DialogCallback?
+        ): Builder {
             neutral = text
             neutralCallback = callback
             return this
         }
 
-        override fun setNeutralText(@StringRes buttonTextRes: Int): Builder? {
+        @Deprecated("")
+        override fun setNeutralText(@StringRes buttonTextRes: Int): Builder {
             setNeutralText(context.getString(buttonTextRes))
             return this
         }
 
-        override fun setNeutralText(buttonText: CharSequence): Builder? {
+        @Deprecated("")
+        override fun setNeutralText(buttonText: CharSequence): Builder {
             neutral = buttonText
             return this
         }
 
-        override fun onNeutral(callback: MaterialDialog.SingleButtonCallback): Builder? {
+        @Deprecated("")
+        override fun onNeutral(callback: DialogCallback): Builder {
             neutralCallback = callback
             return this
         }
 
-        override fun setHeaderScaleType(scaleType: ScaleType?): Builder? {
+        override fun setHeaderScaleType(scaleType: ScaleType?): Builder {
             headerScaleType = scaleType
             return this
         }
 
-        override fun setCancelable(cancelable: Boolean?): Builder? {
+        override fun setCancelable(cancelable: Boolean?): Builder {
             isCancelable = cancelable!!
             return this
         }
 
-        override fun setScrollable(scrollable: Boolean?): Builder? {
+        override fun setScrollable(scrollable: Boolean?): Builder {
             isScrollable = scrollable!!
             return this
         }
@@ -440,21 +411,19 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
         override fun setScrollable(
             scrollable: Boolean?,
             maxLines: Int?
-        ): Builder? {
+        ): Builder {
             isScrollable = scrollable!!
             this.maxLines = maxLines
             return this
         }
 
-        override fun autoDismiss(dismiss: Boolean?): Builder? {
+        override fun autoDismiss(dismiss: Boolean?): Builder {
             isAutoDismiss = dismiss!!
             return this
         }
 
         @UiThread
-        fun build(): MaterialStyledDialog {
-            return MaterialStyledDialog(this)
-        }
+        fun build() = MaterialStyledDialog(this)
 
         @UiThread
         fun show(): MaterialStyledDialog {
@@ -476,12 +445,11 @@ class MaterialStyledDialog protected constructor(builder: Builder) :
             isScrollable = false
             maxLines = 5
             isAutoDismiss = true
-            headerScaleType = AppCompatImageView.ScaleType.CENTER_CROP
+            headerScaleType = ScaleType.CENTER_CROP
         }
     }
 
     init {
-        this.builder = builder
         builder.dialog = initMaterialStyledDialog(builder)
     }
 }

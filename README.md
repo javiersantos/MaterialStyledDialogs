@@ -18,7 +18,7 @@ You can download the latest sample APK from Google Play:
 
 ## How to include
 Add the repository to your project **build.gradle**:
-```Gradle
+```gradle
 repositories {
     jcenter()
     maven {
@@ -28,9 +28,9 @@ repositories {
 ```
 
 And add the library to your module **build.gradle**:
-```Gradle
+```gradle
 dependencies {
-    compile 'com.github.javiersantos:MaterialStyledDialogs:2.2'
+    implementation 'com.github.javiersantos:MaterialStyledDialogs:3.0.0'
 }
 ```
 
@@ -38,25 +38,23 @@ dependencies {
 ### Basic Dialog
 A basic dialog will show the provided title (optional) and description, using your primary color as the header background. You have access to methods such as `setTitle()`, `setContent()`, `setIcon()`, `setCancelable()`, `dismiss()`, etc. Customizations are explained below.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
-	.show();
+	.show()
 ```
 or using the builder...
 
-```Java
-MaterialStyledDialog dialog = new MaterialStyledDialog.Builder(this)
+```kotlin
+val dialog = MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
-	.build();
-...
-dialog.show();
+	.build()
+dialog.show()
 ```
 
 ## Customizations ([Wiki](https://github.com/javiersantos/MaterialStyledDialogs/wiki))
-
 ### Setting a style
 
 <table align="center">
@@ -74,107 +72,97 @@ dialog.show();
     </tr>
 </table>
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.setStyle(Style.HEADER_WITH_ICON)
-	//.setStyle(Style.HEADER_WITH_TITLE)
-	.show();
+	.show()
 ```
 
 ### Displaying an icon
 The dialog icon is displayed in the center of the dialog (as seen it the screenshots).
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.setIcon(R.drawable.ic_launcher)
-	//.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
-	.show();
+	.show()
 ```
 
 ### Using a custom header color
 By default, your primary color will be used for the header background. However you can customize this by adding:
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.setHeaderColor(R.color.dialog_header)
-	.show();
+	.show()
 ```
 
 ### Using an image as the header background
 Customize your dialog by adding a drawable instead of a color.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.setHeaderDrawable(R.drawable.header)
-	//.setHeaderDrawable(ContextCompat.getDrawable(this, R.drawable.heaer))
-	.show();
+	.show()
 ```
 
 ### Adding a darker/grey overlay to the header background
 Some icons or drawables may fit better when using a darker/grey overlay. Using the `.withDarkerOverlay()` method the library will apply a color filter to the header background. `false` by default.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.setHeaderDrawable(R.drawable.header)
 	.withDarkerOverlay(true)
-	.show();
+	.show()
 ```
 
 ### Adding icon and dialog animations
 An animation to the icon will be displayed when the dialog is opened (`true` by default).
 You can also add a custom animation using `.setIconAnimation(R.anim.your_animation)`. A zoom in-out animation will be used by default.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.withIconAnimation(true)
 	.setIconAnimation(R.anim.your_animation)
-	.show();
+	.show()
 ```
 
 The dialog will be displayed with an animation when it is opened and closed. `false` by default.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.withDialogAnimation(true)
-	//.withDialogAnimation(true, Duration.SLOW)
-	.show();
+	.show()
 ```
 
 ### Adding buttons and callbacks
 Buttons are showed at the end of the bottom dialog. You can add your own text and actions/callbacks.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.setPositiveText(R.string.button)
-	.onPositive(new MaterialDialog.SingleButtonCallback() {
-		@Override
-		public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-			Log.d("MaterialStyledDialogs", "Do something!");
-	})
-	//.setNegativeText(...)
-	//.onNegative(...)
-	//.setNeutralText(...)
-	//.onNeutral(...)
-	.show();
+	.onPositive {
+        Log.d("MaterialStyledDialogs", "Do something!");
+    }
+	.show()
 ```
 
-If no `onPositive(...)`, `onNegative(...)` or `onNeutral(...)` callbacks are provided, then the bottom dialog will be dismissed when tapping de button.
+If no `onPositive(...)`, `onNegative(...)` or `onNeutral(...)` callbacks are provided, then the bottom dialog will be dismissed when tapping on the button.
 
 If `autoDismiss()` is turned `false`, then you must manually dismiss the dialog in these callbacks. Auto dismiss is `true` by default.
 
@@ -183,24 +171,23 @@ A divider before the buttons can be added using the `.withDivider(true)` method 
 ### Dismissing when touching outside
 The `setCancelable()` method lets you disable dismissing the bottom dialog when you tap outside the dialog window. `true` by default.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
 	.setCancelable(true)
-	.show();
+	.show()
 ```
 
 ### Adding a custom view
 You can add custom view to your bottom dialog just by adding the layout to the `setCustomView()` method.
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("What can we improve? Your feedback is always welcome.")
-	.setCustomView(your_custom_view) // Old standard padding: .setCustomView(your_custom_view, 20, 20, 20, 0)
-	//.setCustomView(your_custom_view, 10, 20, 10, 20) // int left, int top, int right, int bottom
-	.show();
+	.setCustomView(your_custom_view)
+	.show()
 ```
 
 A detailed description is available at: https://github.com/javiersantos/MaterialStyledDialogs/wiki/Adding-a-custom-view
@@ -208,17 +195,16 @@ A detailed description is available at: https://github.com/javiersantos/Material
 ### Making the content scrollable
 If your dialog content is too long you may prefer to make it scrollable. By using the next method you can specify the minimum number of lines to show the scroll bar (`5 lines` by default).
 
-```Java
-new MaterialStyledDialog.Builder(this)
+```kotlin
+MaterialStyledDialog.Builder(this)
 	.setTitle("Awesome!")
 	.setDescription("A loooooooooong looooooooooong really loooooooooong content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar sem nibh, et efficitur massa mattis eget. Phasellus condimentum ligula.")
 	.setScrollable(true)
-	//.setScrollable(true, 10)
-	.show();
+	.show()
 ```
 
 ## License
-	Copyright 2016-2018 Javier Santos
+	Copyright 2016-2020 Javier Santos
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
