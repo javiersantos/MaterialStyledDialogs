@@ -17,7 +17,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
 import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.internal.button.DialogActionButton
 import com.github.javiersantos.materialstyleddialogs.UtilsAnimation.startAnimation
 import com.github.javiersantos.materialstyleddialogs.UtilsLibrary.dpToPixels
 import com.github.javiersantos.materialstyleddialogs.UtilsLibrary.getColor
@@ -166,6 +169,11 @@ class MaterialStyledDialog(
         if (builder.isDialogDivider) dialogDivider.visibility = View.VISIBLE
         return contentView
     }
+
+    fun positiveButton() = builder.dialog?.getActionButton(WhichButton.POSITIVE)
+    fun negativeButton() = builder.dialog?.getActionButton(WhichButton.NEGATIVE)
+    @Deprecated("Neutral button is deprecated in the parent library: https://github.com/afollestad/material-dialogs")
+    fun neutralButton() = builder.dialog?.getActionButton(WhichButton.NEUTRAL)
 
     class Builder(var context: Context) : IBuilder {
 

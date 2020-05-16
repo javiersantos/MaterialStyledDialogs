@@ -381,6 +381,18 @@ new MaterialStyledDialog.Builder(this)
 	
 </details><br>
 
+### Get the buttons of the dialog
+If you need to access the buttons of your dialog, you can achieve it like this:
+```kotlin
+val dialog = MaterialStyledDialog.Builder(this)
+	.setTitle("Awesome!")
+	.setDescription("This is a sample description.")
+	.show()
+
+dialog.positiveButton().text = "Positive"
+dialog.negativeButton().text = "Negative"
+```
+
 ## License
 	Copyright 2016-2020 Javier Santos
 
