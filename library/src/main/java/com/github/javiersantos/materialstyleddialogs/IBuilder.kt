@@ -1,28 +1,21 @@
-package com.github.javiersantos.materialstyleddialogs;
+package com.github.javiersantos.materialstyleddialogs
 
-import android.graphics.drawable.Drawable;
-import android.support.annotation.AnimRes;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
-import android.view.View;
-import android.widget.ImageView;
+import android.graphics.drawable.Drawable
+import android.view.View
+import android.widget.ImageView.ScaleType
+import androidx.annotation.*
+import com.afollestad.materialdialogs.DialogCallback
+import com.github.javiersantos.materialstyleddialogs.enums.Duration
+import com.github.javiersantos.materialstyleddialogs.enums.Style
 
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.javiersantos.materialstyleddialogs.enums.Duration;
-import com.github.javiersantos.materialstyleddialogs.enums.Style;
-
-interface IBuilder {
-
+internal interface IBuilder {
     /**
      * Set custom view for the dialog.
      *
      * @param customView to apply
      * @return this
      */
-    MaterialStyledDialog.Builder setCustomView(View customView);
+    fun setCustomView(customView: View?): MaterialStyledDialog.Builder?
 
     /**
      * Set custom view for the dialog with optional padding in DP.
@@ -34,7 +27,13 @@ interface IBuilder {
      * @param bottom     padding bottom in DP
      * @return this
      */
-    MaterialStyledDialog.Builder setCustomView(View customView, int left, int top, int right, int bottom);
+    fun setCustomView(
+        customView: View?,
+        left: Int,
+        top: Int,
+        right: Int,
+        bottom: Int
+    ): MaterialStyledDialog.Builder?
 
     /**
      * Set an style for the dialog. Default: Style.STYLE_HEADER.
@@ -43,7 +42,7 @@ interface IBuilder {
      * @return this
      * @see com.github.javiersantos.materialstyleddialogs.enums.Style
      */
-    MaterialStyledDialog.Builder setStyle(Style style);
+    fun setStyle(style: Style?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the header icon will be displayed with an initial animation. Default: true.
@@ -51,7 +50,7 @@ interface IBuilder {
      * @param withAnimation true to enable animation, false otherwise
      * @return this
      */
-    MaterialStyledDialog.Builder withIconAnimation(Boolean withAnimation);
+    fun withIconAnimation(withAnimation: Boolean?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the dialog will be displayed with an open and close animation. Default: false.
@@ -59,7 +58,7 @@ interface IBuilder {
      * @param withAnimation true to enable animation, false otherwise
      * @return this
      */
-    MaterialStyledDialog.Builder withDialogAnimation(Boolean withAnimation);
+    fun withDialogAnimation(withAnimation: Boolean?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the dialog will be displayed with an open and close animation, with custom duration. Default: false, Duration.NORMAL.
@@ -68,7 +67,10 @@ interface IBuilder {
      * @return this
      * @see com.github.javiersantos.materialstyleddialogs.enums.Duration
      */
-    MaterialStyledDialog.Builder withDialogAnimation(Boolean withAnimation, Duration duration);
+    fun withDialogAnimation(
+        withAnimation: Boolean?,
+        duration: Duration?
+    ): MaterialStyledDialog.Builder?
 
     /**
      * Set if the divider will be displayed before the buttons and after the dialog content. Default: false.
@@ -76,7 +78,7 @@ interface IBuilder {
      * @param withDivider true to enable animation, false otherwise
      * @return this
      */
-    MaterialStyledDialog.Builder withDivider(Boolean withDivider);
+    fun withDivider(withDivider: Boolean?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the header will display a gray/darker overlay. Default: false.
@@ -84,7 +86,7 @@ interface IBuilder {
      * @param withDarkerOverlay true to apply a darker overlay, false otherwise
      * @return this
      */
-    MaterialStyledDialog.Builder withDarkerOverlay(Boolean withDarkerOverlay);
+    fun withDarkerOverlay(withDarkerOverlay: Boolean?): MaterialStyledDialog.Builder?
 
     /**
      * Set an icon for the dialog header
@@ -92,7 +94,7 @@ interface IBuilder {
      * @param icon to show
      * @return this
      */
-    MaterialStyledDialog.Builder setIcon(@NonNull Drawable icon);
+    fun setIcon(icon: Drawable): MaterialStyledDialog.Builder?
 
     /**
      * Set an icon for the dialog header
@@ -100,7 +102,7 @@ interface IBuilder {
      * @param iconRes to show
      * @return this
      */
-    MaterialStyledDialog.Builder setIcon(@DrawableRes Integer iconRes);
+    fun setIcon(@DrawableRes iconRes: Int?): MaterialStyledDialog.Builder?
 
     /**
      * Set animation for the dialog icon.
@@ -108,7 +110,7 @@ interface IBuilder {
      * @param animResource custom animation
      * @return this
      */
-    MaterialStyledDialog.Builder setIconAnimation(@AnimRes int animResource);
+    fun setIconAnimation(@AnimRes animResource: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set a title for the dialog
@@ -116,7 +118,7 @@ interface IBuilder {
      * @param titleRes to show
      * @return this
      */
-    MaterialStyledDialog.Builder setTitle(@StringRes int titleRes);
+    fun setTitle(@StringRes titleRes: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set a title for the dialog
@@ -124,7 +126,7 @@ interface IBuilder {
      * @param title to show
      * @return this
      */
-    MaterialStyledDialog.Builder setTitle(@NonNull CharSequence title);
+    fun setTitle(title: CharSequence): MaterialStyledDialog.Builder?
 
     /**
      * Set a description for the dialog
@@ -132,7 +134,7 @@ interface IBuilder {
      * @param descriptionRes to show
      * @return this
      */
-    MaterialStyledDialog.Builder setDescription(@StringRes int descriptionRes);
+    fun setDescription(@StringRes descriptionRes: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set a description for the dialog
@@ -140,7 +142,7 @@ interface IBuilder {
      * @param description to show
      * @return this
      */
-    MaterialStyledDialog.Builder setDescription(@NonNull CharSequence description);
+    fun setDescription(description: CharSequence): MaterialStyledDialog.Builder?
 
     /**
      * Set a color for the dialog header. Default: Theme primary color.
@@ -148,7 +150,7 @@ interface IBuilder {
      * @param color for the header
      * @return this
      */
-    MaterialStyledDialog.Builder setHeaderColor(@ColorRes int color);
+    fun setHeaderColor(@ColorRes color: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set a color for the dialog header. Default: Theme primary color.
@@ -156,7 +158,7 @@ interface IBuilder {
      * @param color for the header
      * @return this
      */
-    MaterialStyledDialog.Builder setHeaderColorInt(@ColorInt int color);
+    fun setHeaderColorInt(@ColorInt color: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set an image for the dialog header.
@@ -164,7 +166,7 @@ interface IBuilder {
      * @param drawable image for the header
      * @return this
      */
-    MaterialStyledDialog.Builder setHeaderDrawable(@NonNull Drawable drawable);
+    fun setHeaderDrawable(drawable: Drawable): MaterialStyledDialog.Builder?
 
     /**
      * Set an image for the dialog header
@@ -172,17 +174,23 @@ interface IBuilder {
      * @param drawableRes image for the header
      * @return this
      */
-    MaterialStyledDialog.Builder setHeaderDrawable(@DrawableRes Integer drawableRes);
+    fun setHeaderDrawable(@DrawableRes drawableRes: Int?): MaterialStyledDialog.Builder?
 
     /**
      * Set a positive button for the dialog
      *
      * @param text     for the button
      * @param callback action to do
-     * @deprecated use {{@link #setPositiveText(CharSequence)}, {@link #setPositiveText(int)} and {@link #onPositive(MaterialDialog.SingleButtonCallback)}} instead
      * @return this
      */
-    MaterialStyledDialog.Builder setPositive(String text, MaterialDialog.SingleButtonCallback callback);
+    @Deprecated(
+        """use {{@link #setPositiveText(CharSequence)}, {@link #setPositiveText(int)} and {@link #onPositive(MaterialDialog.SingleButtonCallback)}} instead
+      """
+    )
+    fun setPositive(
+        text: String?,
+        callback: DialogCallback?
+    ): MaterialStyledDialog.Builder?
 
     /**
      * Set a positive button text for the dialog. E.g.: R.string.accept
@@ -190,7 +198,7 @@ interface IBuilder {
      * @param buttonTextRes     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder setPositiveText(@StringRes int buttonTextRes);
+    fun setPositiveText(@StringRes buttonTextRes: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set a positive button text for the dialog. E.g.: "Accept"
@@ -198,7 +206,7 @@ interface IBuilder {
      * @param buttonText     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder setPositiveText(@NonNull CharSequence buttonText);
+    fun setPositiveText(buttonText: CharSequence): MaterialStyledDialog.Builder?
 
     /**
      * Set a positive button action for the dialog
@@ -206,17 +214,23 @@ interface IBuilder {
      * @param callback     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder onPositive(@NonNull MaterialDialog.SingleButtonCallback callback);
+    fun onPositive(callback: DialogCallback): MaterialStyledDialog.Builder?
 
     /**
      * Set a negative button for the dialog
      *
      * @param text     for the button
      * @param callback action to do
-     * @deprecated use {{@link #setNegativeText(CharSequence)}, {@link #setNegativeText(int)} and {@link #onNegative(MaterialDialog.SingleButtonCallback)}} instead
      * @return this
      */
-    MaterialStyledDialog.Builder setNegative(String text, MaterialDialog.SingleButtonCallback callback);
+    @Deprecated(
+        """use {{@link #setNegativeText(CharSequence)}, {@link #setNegativeText(int)} and {@link #onNegative(MaterialDialog.SingleButtonCallback)}} instead
+      """
+    )
+    fun setNegative(
+        text: String?,
+        callback: DialogCallback?
+    ): MaterialStyledDialog.Builder?
 
     /**
      * Set a negative button text for the dialog. E.g.: R.string.cancel
@@ -224,7 +238,7 @@ interface IBuilder {
      * @param buttonTextRes     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder setNegativeText(@StringRes int buttonTextRes);
+    fun setNegativeText(@StringRes buttonTextRes: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set a negative button text for the dialog. E.g.: "Decline"
@@ -232,7 +246,7 @@ interface IBuilder {
      * @param buttonText     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder setNegativeText(@NonNull CharSequence buttonText);
+    fun setNegativeText(buttonText: CharSequence): MaterialStyledDialog.Builder?
 
     /**
      * Set a negative button action for the dialog
@@ -240,17 +254,23 @@ interface IBuilder {
      * @param callback     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder onNegative(@NonNull MaterialDialog.SingleButtonCallback callback);
+    fun onNegative(callback: DialogCallback): MaterialStyledDialog.Builder?
 
     /**
      * Set a neutral button for the dialog
      *
      * @param text     for the button
      * @param callback action to do
-     * @deprecated use {{@link #setNeutralText(CharSequence)}, {@link #setNeutralText(int)} and {@link #onNeutral(MaterialDialog.SingleButtonCallback)}} instead
      * @return this
      */
-    MaterialStyledDialog.Builder setNeutral(String text, MaterialDialog.SingleButtonCallback callback);
+    @Deprecated(
+        """use {{@link #setNeutralText(CharSequence)}, {@link #setNeutralText(int)} and {@link #onNeutral(MaterialDialog.SingleButtonCallback)}} instead
+      """
+    )
+    fun setNeutral(
+        text: String?,
+        callback: DialogCallback?
+    ): MaterialStyledDialog.Builder?
 
     /**
      * Set a neutral button text for the dialog. E.g.: R.string.later
@@ -258,7 +278,7 @@ interface IBuilder {
      * @param buttonTextRes     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder setNeutralText(@StringRes int buttonTextRes);
+    fun setNeutralText(@StringRes buttonTextRes: Int): MaterialStyledDialog.Builder?
 
     /**
      * Set a neutral button text for the dialog. E.g.: "Maybe later"
@@ -266,7 +286,7 @@ interface IBuilder {
      * @param buttonText     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder setNeutralText(@NonNull CharSequence buttonText);
+    fun setNeutralText(buttonText: CharSequence): MaterialStyledDialog.Builder?
 
     /**
      * Set a neutral button action for the dialog
@@ -274,7 +294,7 @@ interface IBuilder {
      * @param callback     for the button
      * @return this
      */
-    MaterialStyledDialog.Builder onNeutral(@NonNull MaterialDialog.SingleButtonCallback callback);
+    fun onNeutral(callback: DialogCallback): MaterialStyledDialog.Builder?
 
     /**
      * Set the scale type for the header ImageView.
@@ -282,7 +302,7 @@ interface IBuilder {
      * @param scaleType the scale type for the header ImageView
      * @return this
      */
-    MaterialStyledDialog.Builder setHeaderScaleType(ImageView.ScaleType scaleType);
+    fun setHeaderScaleType(scaleType: ScaleType?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the dialog will be hidden when touching outside
@@ -290,7 +310,7 @@ interface IBuilder {
      * @param cancelable true to enable, false otherwise
      * @return this
      */
-    MaterialStyledDialog.Builder setCancelable(Boolean cancelable);
+    fun setCancelable(cancelable: Boolean?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the description will be isScrollable. Default: false.
@@ -298,7 +318,7 @@ interface IBuilder {
      * @param scrollable true to enable isScrollable description, false otherwise
      * @return this
      */
-    MaterialStyledDialog.Builder setScrollable(Boolean scrollable);
+    fun setScrollable(scrollable: Boolean?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the description will be isScrollable, with custom maximum lines. Default: false, 5.
@@ -306,7 +326,7 @@ interface IBuilder {
      * @param scrollable true to enable isScrollable description, false otherwise
      * @return this
      */
-    MaterialStyledDialog.Builder setScrollable(Boolean scrollable, Integer maxLines);
+    fun setScrollable(scrollable: Boolean?, maxLines: Int?): MaterialStyledDialog.Builder?
 
     /**
      * Set if the dialog will be dismissed when a button is pressed. Default: true.
@@ -314,6 +334,5 @@ interface IBuilder {
      * @param dismiss true to dismiss dialog when a button is pressed
      * @return this
      */
-    MaterialStyledDialog.Builder autoDismiss(Boolean dismiss);
-
+    fun autoDismiss(dismiss: Boolean?): MaterialStyledDialog.Builder?
 }

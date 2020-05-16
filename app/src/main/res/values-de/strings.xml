@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MaterialStyledDialogs Bibliothek (Beispiel)</string>
+    <string name="app_description">Eine Bibliothek, die einen schönen und einstellbaren MaterialDialog mit Header und Animationen zeigt.</string>
+    <string name="action_about">Über</string>
+
+    <string name="section_style_1">Stil 1</string>
+    <string name="section_style_2">Stil 2</string>
+
+    <string name="btn_style_header_1">Header mit grüner Farbe, Icon, Titel, Beschreibung und Animationen</string>
+    <string name="btn_style_header_2">Header mit grauer Farbe, Icon und Beschreibung</string>
+    <string name="btn_style_header_3">Header mit Bild, Icon, Titel, Beschreibung und Animationen</string>
+    <string name="btn_style_header_4">Header mit Bild, Titel und Beschreibung</string>
+    <string name="btn_style_header_5">Header mit grüner Farbe, Icon, Titel, Beschreibung, Animationen und benutzerdefiniertem Layout</string>
+
+    <string name="btn_style_header_6">Header mit grüner Farbe, Titel, Beschreibung und Animationen</string>
+    <string name="btn_style_header_7">Header mit Bild, Titel und Beschreibung</string>
+</resources>
