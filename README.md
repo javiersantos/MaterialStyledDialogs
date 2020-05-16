@@ -28,7 +28,7 @@ And add the library to your module **build.gradle**:
 
 ```gradle
 dependencies {
-    implementation 'com.github.javiersantos:MaterialStyledDialogs:3.1'
+    implementation 'com.github.javiersantos:MaterialStyledDialogs:3.0.1'
 }
 ```
 
