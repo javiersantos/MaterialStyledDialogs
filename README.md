@@ -308,6 +308,18 @@ If `autoDismiss()` is turned `false`, then you must manually dismiss the dialog 
 
 A divider before the buttons can be added using the `.withDivider(true)` method (`false` by default).
 
+#### Get the buttons of the dialog
+If you need to access the buttons of your dialog, you can achieve it like this:
+```kotlin
+val dialog = MaterialStyledDialog.Builder(this)
+	.setTitle("Awesome!")
+	.setDescription("This is a sample description.")
+	.show()
+
+dialog.positiveButton().text = "Positive"
+dialog.negativeButton().text = "Negative"
+```
+
 ### Dismissing when touching outside
 The `setCancelable()` method lets you disable dismissing the bottom dialog when you tap outside the dialog window. `true` by default.
 
