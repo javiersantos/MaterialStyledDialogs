@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MaterialStyledDialogs_Title">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">-10dp</item>
+        <item name="android:layout_marginLeft">26dp</item>
+        <item name="android:layout_marginRight">26dp</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:textSize">@dimen/md_styled_text_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:alpha">0.6</item>
+    </style>
+
+    <style name="MaterialStyledDialogs_Description">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginLeft">26dp</item>
+        <item name="android:layout_marginRight">26dp</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:textSize">@dimen/md_styled_text_description</item>
+        <item name="android:alpha">0.6</item>
+    </style>
+</resources>
